@@ -12,12 +12,12 @@ export const GRAMMAR_RULES: GrammarRule[] = [
     color: "bg-gray-100 border-gray-500 text-gray-900"
   },
   {
-    id: "Passé Simple",
-    title: "Le Passé Simple",
-    formula: "Base: Radical Spécial + Terminaisons Spécifiques",
-    description: "Temps littéraire. Terminaisons en -ai, -is, ou -us selon le groupe. Souvent irrégulier.",
-    example: "Il mangea, Il finit",
-    color: "bg-stone-100 border-stone-500 text-stone-900"
+    id: "Passé Composé",
+    title: "Le Passé Composé",
+    formula: "Auxiliaire (Présent) + Participe Passé",
+    description: "L'auxiliaire Avoir ou Être conjugué au Présent, suivi du Participe Passé du verbe.",
+    example: "J'ai mangé",
+    color: "bg-red-100 border-red-500 text-red-900"
   },
   {
     id: "Imparfait",
@@ -106,6 +106,14 @@ export const GRAMMAR_RULES: GrammarRule[] = [
     description: "Temps littéraire (soutenu). Formé sur la 2ème pers. du singulier du Passé Simple + -sse, -sses, -^t, -ssions, -ssiez, -ssent.",
     example: "Que je parlasse, Qu'il fût",
     color: "bg-teal-100 border-teal-500 text-teal-900"
+  },
+  {
+    id: "Passé Simple",
+    title: "Le Passé Simple",
+    formula: "Base: Radical Spécial + Terminaisons Spécifiques",
+    description: "Temps littéraire. Terminaisons en -ai, -is, ou -us selon le groupe. Souvent irrégulier.",
+    example: "Il mangea, Il finit",
+    color: "bg-stone-100 border-stone-500 text-stone-900"
   },
 ];
 
