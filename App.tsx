@@ -270,12 +270,13 @@ const App: React.FC = () => {
 
   // --- HELPER FOR RENDERING TRAYS ---
   // Updated to pass containerClass to TrayBlock
+  // Updated onSelect to handle toggle logic (deselect if already selected)
   const AuxStemTray = ({ gridClass, containerClass }: { gridClass: string, containerClass?: string }) => (
     <TrayBlock 
       items={availableAuxStems}
       type="aux-stem"
       selected={selectedAuxStem}
-      onSelect={setSelectedAuxStem}
+      onSelect={(item) => setSelectedAuxStem(prev => prev === item ? null : item)}
       title={`Aux · ${t('stems_tray')}`}
       color="amber"
       gridClass={gridClass}
@@ -289,7 +290,7 @@ const App: React.FC = () => {
       items={availableAuxEndings}
       type="aux-ending"
       selected={selectedAuxEnding}
-      onSelect={setSelectedAuxEnding}
+      onSelect={(item) => setSelectedAuxEnding(prev => prev === item ? null : item)}
       title={`Aux · ${t('endings_tray')}`}
       color="amber"
       gridClass={gridClass}
@@ -302,7 +303,7 @@ const App: React.FC = () => {
       items={availableStems}
       type="stem"
       selected={selectedStem}
-      onSelect={setSelectedStem}
+      onSelect={(item) => setSelectedStem(prev => prev === item ? null : item)}
       title={`Verb · ${t('stems_tray')}`}
       color="blue"
       gridClass={gridClass}
@@ -316,7 +317,7 @@ const App: React.FC = () => {
       items={availableEndings}
       type="ending"
       selected={selectedEnding}
-      onSelect={setSelectedEnding}
+      onSelect={(item) => setSelectedEnding(prev => prev === item ? null : item)}
       title={`Verb · ${t('endings_tray')}`}
       color="blue"
       gridClass={gridClass}
@@ -506,7 +507,7 @@ const App: React.FC = () => {
                     placeholder="Aux" 
                     onClear={() => setSelectedAuxStem(null)}
                     onDrop={(text) => setSelectedAuxStem(text)}
-                    isCorrect={gameState === GameState.SUCCESS ? true : null}
+                    isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
                     position={puzzle.auxEnding !== null ? 'left' : 'single'}
                   />
                   {puzzle.auxEnding !== null && (
@@ -516,7 +517,7 @@ const App: React.FC = () => {
                       placeholder={t('ending_zone')} 
                       onClear={() => setSelectedAuxEnding(null)}
                       onDrop={(text) => setSelectedAuxEnding(text)}
-                      isCorrect={gameState === GameState.SUCCESS ? true : null}
+                      isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
                       position="right"
                     />
                   )}
@@ -728,7 +729,7 @@ const App: React.FC = () => {
                     disabled={!isComplete}
                     className={`flex-[2] sm:flex-none flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold shadow-lg transition-all ${
                       isComplete 
-                      ? 'bg-french-blue text-white shadow-blue-200 hover:scale-105 active:scale-95' 
+                      ? 'bg-green-600 text-white hover:scale-105 active:scale-95 hover:bg-green-700' 
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     }`}
                   >

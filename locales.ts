@@ -1,5 +1,4 @@
 
-
 export type Language = 'fr' | 'en' | 'zh' | 'ja';
 
 export const TRANSLATIONS = {
@@ -34,9 +33,18 @@ export const TRANSLATIONS = {
       validate: "Valider",
       regular: "Régulier",
       irregular: "Irrégulier",
-      about_desc: "Conjugaison Puzzle est un outil interactif conçu pour démystifier la conjugaison française. En décomposant les verbes en blocs logiques (radical + terminaison), il aide les apprenants à visualiser et mémoriser les motifs de 14 temps différents.",
+      about_desc: "Conjugaison Puzzle est un outil interactif conçu pour démystifier la conjugaison française.",
       author: "Créé par",
-      version: "v1.0.0"
+      version: "v1.0.0",
+      how_to_title: "Comment jouer ?",
+      step_1_title: "Lire l'objectif",
+      step_1_desc: "Le panneau supérieur indique le pronom, le verbe et le temps.",
+      step_2_title: "Comprendre la logique",
+      step_2_desc: "La conjugaison se construit souvent ainsi : Base + Terminaison.",
+      step_3_title: "Glisser-Déposer",
+      step_3_desc: "Choisissez les pièces dans le plateau et placez-les dans les zones.",
+      step_4_title: "Vérifier",
+      step_4_desc: "Cliquez sur vérifier pour valider votre réponse !"
     },
     tenses: {
       "Présent": "Présent",
@@ -104,7 +112,16 @@ export const TRANSLATIONS = {
       irregular: "Irregular",
       about_desc: "Conjugation Puzzle helps you visualize French verb patterns.",
       author: "By",
-      version: "v1.0.0"
+      version: "v1.0.0",
+      how_to_title: "How to play",
+      step_1_title: "Read the objective",
+      step_1_desc: "The top panel shows the pronoun, verb, and tense.",
+      step_2_title: "Build the form",
+      step_2_desc: "French conjugation is usually built from: Base + Ending.",
+      step_3_title: "Drag & Drop",
+      step_3_desc: "Choose pieces from the tray and drop them into the slots.",
+      step_4_title: "Verify",
+      step_4_desc: "Click check to see if you are right!"
     },
     tenses: {
       "Présent": "Present",
@@ -172,7 +189,16 @@ export const TRANSLATIONS = {
       irregular: "不规则",
       about_desc: "通过拼接词根和词尾来掌握法语动词变位。",
       author: "开发者",
-      version: "v1.0.0"
+      version: "v1.0.0",
+      how_to_title: "如何使用",
+      step_1_title: "阅读目标",
+      step_1_desc: "顶部面板显示代词、动词和目标时态。",
+      step_2_title: "理解逻辑",
+      step_2_desc: "法语变位通常由 “词根 (Base) + 词尾 (Fin)” 组成。",
+      step_3_title: "拖拽拼图",
+      step_3_desc: "从下方托盘选择正确的拼图块，拖入中间的空槽。",
+      step_4_title: "验证答案",
+      step_4_desc: "点击检查按钮，系统会验证你的组合是否正确！"
     },
     tenses: {
       "Présent": "直陈式现在时",
@@ -240,7 +266,16 @@ export const TRANSLATIONS = {
       irregular: "不規則",
       about_desc: "語幹と語尾を組み合わせてフランス語の活用をマスターしましょう。",
       author: "作成",
-      version: "v1.0.0"
+      version: "v1.0.0",
+      how_to_title: "遊び方",
+      step_1_title: "お題を読む",
+      step_1_desc: "上部に代名詞、動詞、時制が表示されます。",
+      step_2_title: "ロジック",
+      step_2_desc: "フランス語の動詞は基本的に「語幹(Base) + 語尾(Fin)」で作られます。",
+      step_3_title: "ドラッグ＆ドロップ",
+      step_3_desc: "下のトレイからピースを選んで、空のスロットに配置します。",
+      step_4_title: "答え合わせ",
+      step_4_desc: "判定ボタンを押して、正解かどうか確認しましょう！"
     },
     tenses: {
       "Présent": "現在形",
