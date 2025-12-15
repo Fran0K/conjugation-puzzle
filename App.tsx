@@ -398,16 +398,16 @@ const App: React.FC = () => {
                 )}
              </div>
 
-            <button onClick={() => setShowSettings(true)} className="p-2 hover:bg-blue-50 rounded-full transition-colors text-gray-400">
+            <button onClick={() => setShowSettings(true)} className="p-2 text-gray-400 hover:bg-blue-50 rounded-full transition-colors">
               <Settings className="w-6 h-6" />
             </button>
 
-            <button onClick={() => setShowGrammar(true)} className="p-2 text-french-blue hover:bg-blue-50 rounded-full transition-colors">
+            <button onClick={() => setShowGrammar(true)} className="p-2 text-gray-400 hover:bg-blue-50 rounded-full transition-colors">
               <BookOpen className="w-6 h-6" />
             </button>
 
              {/* Info Button - Now visible on all screens, at the end of the row */}
-             <button onClick={() => setShowAbout(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
+             <button onClick={() => setShowAbout(true)} className="p-2 text-gray-400 hover:bg-blue-50 rounded-full transition-colors">
                <Info className="w-6 h-6" />
              </button>
           </div>
