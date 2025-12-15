@@ -7,7 +7,7 @@ import { GrammarModal } from './components/GrammarModal';
 import { SettingsModal } from './components/SettingsModal';
 import { AboutModal } from './components/AboutModal';
 import { ALL_TENSES, SHIMMER_CLASS } from './constants';
-import { BookOpen, RefreshCw, ArrowRight, BrainCircuit, Database, Settings, Lightbulb, ChevronDown, Info, Plus } from 'lucide-react';
+import { BookOpen, RefreshCw, ArrowRight, BrainCircuit, Database, Settings, Lightbulb, ChevronDown, Info, Plus, Puzzle as PuzzleIcon } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { Language } from './locales';
 
@@ -340,16 +340,13 @@ const App: React.FC = () => {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-french-blue rounded-lg flex items-center justify-center text-white font-bold font-display shadow-sm">
-              C
+            {/* Logo */}
+            <div className="w-8 h-8 bg-french-blue rounded-lg flex items-center justify-center text-white shadow-sm">
+              <PuzzleIcon className="w-5 h-5" />
             </div>
             <h1 className="text-xl font-display font-bold text-french-dark hidden sm:block">
               {t('title')}
             </h1>
-            {/* Info Button for Mobile (next to title) */}
-             <button onClick={() => setShowAbout(true)} className="sm:hidden p-1 text-gray-300 hover:text-french-blue transition-colors">
-               <Info className="w-4 h-4" />
-             </button>
           </div>
           
           <div className="flex items-center gap-2 sm:gap-3">
@@ -391,8 +388,8 @@ const App: React.FC = () => {
               <BookOpen className="w-6 h-6" />
             </button>
 
-             {/* Info Button for Desktop */}
-             <button onClick={() => setShowAbout(true)} className="hidden sm:block p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
+             {/* Info Button - Now visible on all screens, at the end of the row */}
+             <button onClick={() => setShowAbout(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
                <Info className="w-6 h-6" />
              </button>
           </div>

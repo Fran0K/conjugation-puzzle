@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, Heart, Github, Linkedin, Rss, Eye, Puzzle, MousePointerClick, CheckCircle2 } from 'lucide-react';
+import { X, Heart, Github, Linkedin, Rss, Eye, MousePointerClick, CheckCircle2, CircleFadingPlus,Puzzle } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 interface AboutModalProps {
@@ -32,8 +32,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         <div className="flex-1 overflow-y-auto p-6 sm:p-8">
            <div className="flex flex-col items-center text-center mb-8">
               {/* Logo / Icon */}
-              <div className="w-16 h-16 bg-french-blue rounded-2xl flex items-center justify-center text-white font-bold font-display text-4xl shadow-lg mb-4 transform rotate-3">
-                  C
+              <div className="w-16 h-16 bg-french-blue rounded-2xl flex items-center justify-center text-white font-regular font-display text-4xl shadow-lg mb-4">
+                  <Puzzle className="w-16 h-16" strokeWidth={1.0}/>
               </div>
               <h1 className="text-2xl font-bold text-gray-800">{t('title')}</h1>
               <p className="text-xs font-mono text-gray-400 mt-1">{t('version')}</p>
@@ -44,8 +44,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
 
            {/* How To Play Section */}
            <div className="mb-8">
-             <h3 className="text-lg font-bold text-french-dark mb-4 flex items-center gap-2">
-               <Puzzle className="w-5 h-5 text-french-blue" />
+             <h3 className="text-lg font-bold text-french-dark mb-4 flex items-center gap-2">             
                {t('how_to_title')}
              </h3>
              
@@ -64,7 +63,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
                {/* Step 2 */}
                <div className="flex gap-4 items-start">
                  <div className="w-8 h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
-                   <Puzzle className="w-4 h-4" />
+                   <CircleFadingPlus className="w-4 h-4" />
                  </div>
                  <div className="text-left">
                    <h4 className="font-bold text-gray-800 text-sm">{t('step_2_title')}</h4>
