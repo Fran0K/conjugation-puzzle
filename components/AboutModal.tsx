@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, Heart, Github, Linkedin, Rss, Eye, MousePointerClick, CheckCircle2, CircleFadingPlus,Puzzle } from 'lucide-react';
+import { X, Heart, Github, Linkedin, Rss, Eye, MousePointerClick, CheckCircle2, CircleFadingPlus, Puzzle } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 interface AboutModalProps {
@@ -32,8 +32,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         <div className="flex-1 overflow-y-auto p-6 sm:p-8">
            <div className="flex flex-col items-center text-center mb-8">
               {/* Logo / Icon */}
-              <div className="w-16 h-16 bg-french-blue rounded-2xl flex items-center justify-center text-white font-regular font-display text-4xl shadow-lg mb-4">
-                  <Puzzle className="w-16 h-16" strokeWidth={1.0}/>
+              <div className="w-16 h-16 bg-french-blue rounded-2xl flex items-center justify-center text-white shadow-lg mb-4">
+                  <Puzzle className="w-10 h-10" />
               </div>
               <h1 className="text-2xl font-bold text-gray-800">{t('title')}</h1>
               <p className="text-xs font-mono text-gray-400 mt-1">{t('version')}</p>

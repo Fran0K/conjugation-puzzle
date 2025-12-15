@@ -158,10 +158,10 @@ export const TRANSLATIONS = {
   },
   zh: {
     ui: {
-      title: "法语变位拼图",
+      title: "法语动词变位拼图",
       score: "得分",
       settings: "设置",
-      rules: "规则",
+      rules: "变位规则",
       about: "关于",
       objective: "目标",
       hint: "提示",
