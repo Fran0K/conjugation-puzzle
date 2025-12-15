@@ -29,7 +29,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose }) => {
         </div>
         
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8">
+        <div className="flex-1 overflow-y-auto px-4 py-3 md:px-6 md:py-4">
            <div className="flex flex-col items-center text-center mb-8">
               {/* Logo / Icon */}
               <div className="w-16 h-16 bg-french-blue rounded-2xl flex items-center justify-center text-white shadow-lg mb-4">

@@ -69,7 +69,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose, s
         </div>
         
         {/* Content */}
-        <div className="p-6 overflow-y-auto flex-1">
+        <div className="flex-1 overflow-y-auto px-4 md:px-6 py-4 md:py-6 space-y-6">
           <div className="flex justify-between items-end mb-4">
              <p className="text-sm text-gray-500">{t('filter_desc')}</p>
              <div className="flex gap-4">
