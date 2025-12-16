@@ -9,7 +9,7 @@ import { SettingsModal } from './components/SettingsModal';
 import { AboutModal } from './components/AboutModal';
 import { TutorialOverlay, TutorialStep } from './components/TutorialOverlay'; // Changed Import
 import { ALL_TENSES, SHIMMER_CLASS } from './constants';
-import { BookOpen, RefreshCw, ArrowRight, Database, Settings, Lightbulb, ChevronDown, Info, Plus, Puzzle as PuzzleIcon } from 'lucide-react';
+import { BookOpen, RefreshCw, ArrowRight, Database, Settings, Lightbulb, ChevronDown, Info, Plus, Puzzle as PuzzleIcon, AlertCircle } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { Language } from './locales';
 
@@ -221,6 +221,10 @@ const App: React.FC = () => {
       setFeedback(t('correct'));
     } else {
       setFeedback(t('wrong'));
+      // Auto clear feedback after 3 seconds if user doesn't interact
+      setTimeout(() => {
+          setFeedback((current) => current === t('wrong') ? null : current);
+      }, 3000);
     }
   };
 
@@ -236,6 +240,13 @@ const App: React.FC = () => {
   const selectLanguage = (lang: Language) => {
     setLanguage(lang);
     setIsLangMenuOpen(false);
+  };
+
+  // Helper to clear feedback on interaction
+  const clearFeedback = () => {
+    if (feedback && gameState !== GameState.SUCCESS) {
+      setFeedback(null);
+    }
   };
 
   // Completion logic
@@ -295,7 +306,7 @@ const App: React.FC = () => {
     title: string, 
     color: 'amber' | 'blue' | 'red',
     gridClass: string,
-    containerClass?: string,
+    containerClass?: string, 
     showConnectors?: boolean
   }) => {
     const borderColor = color === 'amber' ? 'border-amber-100' : (color === 'blue' ? 'border-blue-100' : 'border-red-100');
@@ -328,7 +339,7 @@ const App: React.FC = () => {
       items={availableAuxStems}
       type="aux-stem"
       selected={selectedAuxStem}
-      onSelect={(item) => setSelectedAuxStem(prev => prev === item ? null : item)}
+      onSelect={(item) => { setSelectedAuxStem(prev => prev === item ? null : item); clearFeedback(); }}
       title={`Aux · ${t('stems_tray')}`}
       color="amber"
       gridClass={gridClass}
@@ -342,7 +353,7 @@ const App: React.FC = () => {
       items={availableAuxEndings}
       type="aux-ending"
       selected={selectedAuxEnding}
-      onSelect={(item) => setSelectedAuxEnding(prev => prev === item ? null : item)}
+      onSelect={(item) => { setSelectedAuxEnding(prev => prev === item ? null : item); clearFeedback(); }}
       title={`Aux · ${t('endings_tray')}`}
       color="amber"
       gridClass={gridClass}
@@ -355,7 +366,7 @@ const App: React.FC = () => {
       items={availableStems}
       type="stem"
       selected={selectedStem}
-      onSelect={(item) => setSelectedStem(prev => prev === item ? null : item)}
+      onSelect={(item) => { setSelectedStem(prev => prev === item ? null : item); clearFeedback(); }}
       title={`Verb · ${t('stems_tray')}`}
       color="blue"
       gridClass={gridClass}
@@ -369,7 +380,7 @@ const App: React.FC = () => {
       items={availableEndings}
       type="ending"
       selected={selectedEnding}
-      onSelect={(item) => setSelectedEnding(prev => prev === item ? null : item)}
+      onSelect={(item) => { setSelectedEnding(prev => prev === item ? null : item); clearFeedback(); }}
       title={`Verb · ${t('endings_tray')}`}
       color="blue"
       gridClass={gridClass}
@@ -487,7 +498,7 @@ const App: React.FC = () => {
         {(gameState === GameState.PLAYING || gameState === GameState.SUCCESS) && puzzle && (
           <>
             {/* The Challenge - Card Area */}
-            <div className="w-full text-center mb-6 sm:mb-8 px-1">
+            <div className="w-full text-center mb-6 sm:mb-10 px-1">
               <div className="relative inline-block w-full max-w-lg" ref={objectiveRef}>
                 
                 {/* Card Background & Content */}
@@ -509,10 +520,10 @@ const App: React.FC = () => {
                     {tTense(puzzle.tense)}
                   </div>
 
-                  {/* MOBILE ONLY: Hint Button */}
+                  {/* Unified Hint Button (Visible on both Mobile and Desktop) */}
                   <button
                       onClick={() => setShowHint(!showHint)}
-                      className={`sm:hidden absolute bottom-2 right-2 p-2.5 rounded-full shadow-sm border transition-all z-20 ${
+                      className={`absolute bottom-2 right-2 p-2.5 rounded-full shadow-sm border transition-all z-20 ${
                         showHint 
                           ? 'bg-blue-600 text-white border-blue-600' 
                           : 'bg-white/50 hover:bg-white backdrop-blur-sm text-gray-400 border-transparent hover:border-gray-100 hover:text-french-blue'
@@ -523,9 +534,9 @@ const App: React.FC = () => {
                   </button>
                 </div>
 
-                {/* MOBILE ONLY: Rule Bubble */}
+                {/* Unified Rule Bubble (Visible on both Mobile and Desktop) */}
                 {showHint && (
-                   <div className="sm:hidden w-full mt-3 animate-in slide-in-from-top-2 fade-in duration-300">
+                   <div className="w-full mt-3 animate-in slide-in-from-top-2 fade-in duration-300">
                       <div className="mx-auto bg-blue-600 text-white text-xs px-4 py-3 rounded-2xl shadow-md border border-blue-400/50 text-center relative z-10">
                         <div className="flex items-center justify-center gap-2 mb-1 opacity-80">
                           <BookOpen className="w-3 h-3" />
@@ -536,26 +547,11 @@ const App: React.FC = () => {
                    </div>
                 )}
               </div>
-
-              {/* DESKTOP ONLY: Original Centered Hint Row */}
-              <div className="hidden sm:flex justify-center mt-6 h-10">
-                {!showHint ? (
-                  <button onClick={() => setShowHint(true)} className="flex items-center gap-2 text-sm bg-white text-french-blue hover:bg-blue-50 px-4 py-2 rounded-full border border-blue-100 shadow-sm transition-all">
-                    <Lightbulb className="w-4 h-4" />
-                    <span className="font-semibold">{t('hint')}</span>
-                  </button>
-                ) : (
-                  <button onClick={() => setShowHint(false)} className="flex items-center justify-center gap-2 text-sm bg-blue-50 text-blue-800 hover:bg-blue-100 px-4 py-2 rounded-full border border-blue-100 shadow-sm animate-in fade-in zoom-in-95 transition-colors cursor-pointer">
-                    <Lightbulb className="w-4 h-4" />
-                    <span className="font-semibold">{translatedRuleSummary}</span>
-                  </button>
-                )}
-              </div>
             </div>
 
             {/* --- DROP ZONES (PUZZLE AREA) --- */}
             {/* Force single row on Desktop (sm:flex-row) regardless of Aux */}
-            <div ref={dropZoneRef} className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-10 w-full transition-all duration-300">
+            <div ref={dropZoneRef} className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-10 w-full transition-all duration-300">
               
               {/* GROUP 1: AUXILIARY (Optional) */}
               {isCompound && (
@@ -564,9 +560,9 @@ const App: React.FC = () => {
                     type="aux-stem" 
                     content={selectedAuxStem} 
                     placeholder={puzzle.is_regular ? t('stem_zone') : t('stem_zone')} 
-                    onClear={() => setSelectedAuxStem(null)}
-                    onDrop={(text) => setSelectedAuxStem(text)}
-                    isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
+                    onClear={() => { setSelectedAuxStem(null); clearFeedback(); }}
+                    onDrop={(text) => { setSelectedAuxStem(text); clearFeedback(); }}
+                    isCorrect={gameState === GameState.SUCCESS ? true : (feedback ? false : null)}
                     position={puzzle.auxEnding !== null ? 'left' : 'single'}
                   />
                   {puzzle.auxEnding !== null && (
@@ -574,9 +570,9 @@ const App: React.FC = () => {
                       type="aux-ending" 
                       content={selectedAuxEnding} 
                       placeholder={t('ending_zone')} 
-                      onClear={() => setSelectedAuxEnding(null)}
-                      onDrop={(text) => setSelectedAuxEnding(text)}
-                      isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
+                      onClear={() => { setSelectedAuxEnding(null); clearFeedback(); }}
+                      onDrop={(text) => { setSelectedAuxEnding(text); clearFeedback(); }}
+                      isCorrect={gameState === GameState.SUCCESS ? true : (feedback ? false : null)}
                       position="right"
                     />
                   )}
@@ -594,9 +590,9 @@ const App: React.FC = () => {
                   type="stem" 
                   content={selectedStem} 
                   placeholder={puzzle.is_regular ? t('stem_zone') : t('stem_zone')} 
-                  onClear={() => setSelectedStem(null)}
-                  onDrop={(text) => setSelectedStem(text)}
-                  isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
+                  onClear={() => { setSelectedStem(null); clearFeedback(); }}
+                  onDrop={(text) => { setSelectedStem(text); clearFeedback(); }}
+                  isCorrect={gameState === GameState.SUCCESS ? true : (feedback ? false : null)}
                   position={puzzle.correctEnding !== null ? 'left' : 'single'}
                 />
                 
@@ -606,9 +602,9 @@ const App: React.FC = () => {
                     type="ending" 
                     content={selectedEnding} 
                     placeholder={t('ending_zone')} 
-                    onClear={() => setSelectedEnding(null)}
-                    onDrop={(text) => setSelectedEnding(text)}
-                    isCorrect={gameState === GameState.SUCCESS ? true : (feedback && !feedback.includes(t('correct')) ? false : null)}
+                    onClear={() => { setSelectedEnding(null); clearFeedback(); }}
+                    onDrop={(text) => { setSelectedEnding(text); clearFeedback(); }}
+                    isCorrect={gameState === GameState.SUCCESS ? true : (feedback ? false : null)}
                     position="right"
                   />
                 )}
@@ -616,7 +612,6 @@ const App: React.FC = () => {
             </div>
 
             {/* --- PIECES TRAY (CANDIDATES) --- */}
-            {/* LAYOUT LOGIC BASED ON TRAY COUNT */}
             <div className="w-full max-w-4xl mt-0" ref={trayRef}>
               {gameState !== GameState.SUCCESS && (
                 <>
@@ -624,8 +619,6 @@ const App: React.FC = () => {
                   {/* CASE 1: ALL 4 TRAYS (Compound + Split Aux + Split Verb) */}
                   {trayCount === 4 && (
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
-                       {/* Mobile: 2 rows (2 cols each). Desktop: 1 row (4 cols). */}
-                       {/* Internal Grid: Mobile=2x2 (grid-cols-2). Desktop=1x4 (sm:grid-cols-1) vertical stack. */}
                        <AuxStemTray gridClass="grid grid-cols-2 sm:grid-cols-1 gap-2 w-full justify-items-center" />
                        <AuxEndTray gridClass="grid grid-cols-2 sm:grid-cols-1 gap-2 w-full justify-items-center" />
                        <VerbStemTray gridClass="grid grid-cols-2 sm:grid-cols-1 gap-2 w-full justify-items-center" />
@@ -637,8 +630,6 @@ const App: React.FC = () => {
                   {trayCount === 3 && (
                      <div className="flex flex-col gap-3 w-full sm:flex-row sm:justify-center">
                         {!hasAuxEnd ? (
-                           /* Scenario 1: Aux (Single) + Verb (Split) */
-                           /* Mobile: Aux (Row 1), Verb Pair (Row 2 Side-by-Side) */
                            <>
                               <AuxStemTray 
                                 gridClass="grid grid-cols-4 sm:grid-cols-1 gap-2 w-full justify-items-center" 
@@ -656,8 +647,6 @@ const App: React.FC = () => {
                               </div>
                            </>
                         ) : (
-                           /* Scenario 2: Aux (Split) + Verb (Single) */
-                           /* Mobile: Aux Pair (Row 1 Side-by-Side), Verb (Row 2) */
                            <>
                               <div className="grid grid-cols-2 gap-3 w-full sm:flex sm:w-auto sm:gap-3">
                                  <AuxStemTray 
@@ -681,8 +670,6 @@ const App: React.FC = () => {
                   {/* CASE 3: 2 TRAYS (Standard Regular Verb) */}
                   {trayCount === 2 && (
                     <div className="grid grid-cols-2 sm:flex sm:flex-row justify-center gap-3 w-full">
-                        {/* Side by Side on Desktop (centered flex) and Mobile (grid). 2x2 grid inside. */}
-                        {/* ADDED sm:gap-4 to gridClass for internal spacing */}
                         {hasAuxStem ? (
                           <>
                             <AuxStemTray 
@@ -719,7 +706,6 @@ const App: React.FC = () => {
                   {/* CASE 4: 1 TRAY (Simple Irregular Verb) */}
                   {trayCount === 1 && (
                     <div className="w-full flex justify-center">
-                       {/* Desktop: Centered, w-fit ensures border shrinks. w-full removed from inner container on desktop. */}
                        <VerbStemTray 
                          gridClass="grid grid-cols-4 sm:flex sm:flex-wrap sm:justify-center gap-2 sm:gap-3 w-full sm:px-8 justify-items-center" 
                          containerClass="w-full sm:w-fit sm:max-w-5xl"
@@ -731,18 +717,20 @@ const App: React.FC = () => {
               )}
             </div>
 
-            {/* Feedback & Result */}
-            {feedback && (
-              <div className={`mt-6 sm:mt-8 p-4 sm:p-6 rounded-2xl border-2 text-center animate-in zoom-in-95 duration-300 ${
-                gameState === GameState.SUCCESS ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
-              }`}>
-                <h3 className={`text-xl sm:text-2xl font-display font-bold mb-2 ${
-                   gameState === GameState.SUCCESS ? 'text-green-700' : 'text-red-700'
-                }`}>
+            {/* Error Feedback (Compact) */}
+            {gameState !== GameState.SUCCESS && feedback && (
+               <div className="mt-6 p-3 rounded-xl border-2 text-center bg-red-50 border-red-200 animate-in zoom-in-95">
+                 <h3 className="text-lg font-bold text-red-700">{feedback}</h3>
+               </div>
+            )}
+
+            {/* Success Feedback (Large) */}
+            {gameState === GameState.SUCCESS && feedback && (
+              <div className="mt-6 sm:mt-10 p-4 sm:p-6 rounded-2xl border-2 text-center animate-in zoom-in-95 duration-300 bg-green-50 border-green-200">
+                <h3 className="text-xl sm:text-2xl font-display font-bold mb-2 text-green-700">
                   {feedback}
                 </h3>
-                {gameState === GameState.SUCCESS && (
-                  <div className="space-y-4 mt-4">
+                <div className="space-y-4 mt-4">
                     <div className="text-base sm:text-lg text-green-900 bg-white/60 inline-block px-4 py-2 sm:px-6 rounded-xl">
                       {puzzle.pronoun} 
                       <span className="font-bold ml-2">
@@ -759,43 +747,45 @@ const App: React.FC = () => {
                        </span>
                        {puzzle.explanation}
                     </div>
-                  </div>
-                )}
+                </div>
               </div>
             )}
             
             {/* Sticky Action Footer */}
-            <div className="fixed bottom-0 left-0 right-0 p-3 sm:p-4 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40 flex justify-center gap-3 sm:gap-4 sm:static sm:bg-transparent sm:border-0 sm:shadow-none sm:mt-8 sm:backdrop-blur-none">
-              {gameState === GameState.SUCCESS ? (
-                 <button 
-                 onClick={loadNewPuzzle}
-                 className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-french-dark text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold shadow-xl hover:bg-gray-800 hover:scale-105 transition-all active:scale-95 ring-4 ring-gray-100"
-               >
-                 <span>{t('next')}</span>
-                 <ArrowRight className="w-5 h-5" />
-               </button>
-              ) : (
-                <>
-                   <button 
-                    onClick={handleSkip}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 text-gray-500 hover:text-gray-700 px-4 py-3 sm:px-6 rounded-xl font-semibold transition-colors hover:bg-gray-100 bg-gray-50 sm:bg-transparent"
-                  >
-                    <RefreshCw className="w-5 h-5" />
-                    <span>{t('skip')}</span>
-                  </button>
-                  <button 
-                    onClick={handleCheck}
-                    disabled={!isComplete}
-                    className={`flex-[2] sm:flex-none flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold shadow-lg transition-all ${
-                      isComplete 
-                      ? 'bg-green-600 text-white hover:scale-105 active:scale-95 hover:bg-green-700' 
-                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    }`}
-                  >
-                    <span>{t('check')}</span>
-                  </button>
-                </>
-              )}
+            <div className="fixed bottom-0 left-0 right-0 p-3 sm:p-4 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-40 flex flex-col items-center justify-center sm:static sm:bg-transparent sm:border-0 sm:shadow-none sm:mt-10 sm:backdrop-blur-none">
+              
+              <div className="flex gap-3 sm:gap-4 w-full justify-center">
+                  {gameState === GameState.SUCCESS ? (
+                     <button 
+                     onClick={loadNewPuzzle}
+                     className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-french-dark text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold shadow-xl hover:bg-gray-800 hover:scale-105 transition-all active:scale-95 ring-4 ring-gray-100"
+                   >
+                     <span>{t('next')}</span>
+                     <ArrowRight className="w-5 h-5" />
+                   </button>
+                  ) : (
+                    <>
+                       <button 
+                        onClick={handleSkip}
+                        className="flex-1 sm:flex-none flex items-center justify-center gap-2 text-gray-500 hover:text-gray-700 px-4 py-3 sm:px-6 rounded-xl font-semibold transition-colors hover:bg-gray-100 bg-gray-50 sm:bg-transparent"
+                      >
+                        <RefreshCw className="w-5 h-5" />
+                        <span>{t('skip')}</span>
+                      </button>
+                      <button 
+                        onClick={handleCheck}
+                        disabled={!isComplete}
+                        className={`flex-[2] sm:flex-none flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold shadow-lg transition-all ${
+                          isComplete 
+                          ? 'bg-green-600 text-white hover:scale-105 active:scale-95 hover:bg-green-700' 
+                          : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                        }`}
+                      >
+                        <span>{t('check')}</span>
+                      </button>
+                    </>
+                  )}
+              </div>
             </div>
 
           </>

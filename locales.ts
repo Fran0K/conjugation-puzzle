@@ -254,7 +254,7 @@ export const TRANSLATIONS = {
       tour_next: "下一步",
       tour_finish: "知道了",
       tour_obj_title: "当前目标",
-      tour_obj_desc: "这里显示需要变位的 代词 + 动词 + 时态。",
+      tour_obj_desc: "这里显示需要变位的 人称代词 + 动词 + 时态。",
       tour_tray_title: "拼图碎片",
       tour_tray_desc: "在下方区域找到正确的【词根】和【词尾】。",
       tour_zone_title: "拼装区域",
