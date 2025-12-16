@@ -49,10 +49,19 @@ export const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
 
   // 3. Selection Override
   if (isSelected) {
-    bgClass = "bg-french-blue";
-    textClass = "text-white";
-    borderClass = "border-blue-600";
-    ringClass = "ring-2 sm:ring-4 ring-blue-200";
+    if (isAux) {
+      // Amber Highlight for Aux
+      bgClass = "bg-amber-500";
+      textClass = "text-white";
+      borderClass = "border-amber-600";
+      ringClass = "ring-2 sm:ring-4 ring-amber-200";
+    } else {
+      // Blue Highlight for Verb
+      bgClass = "bg-french-blue";
+      textClass = "text-white";
+      borderClass = "border-blue-600";
+      ringClass = "ring-2 sm:ring-4 ring-blue-200";
+    }
   }
 
   // 4. Validation Override
