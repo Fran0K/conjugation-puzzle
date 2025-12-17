@@ -549,13 +549,13 @@ const App: React.FC = () => {
                 )}
              </div>
 
-            <button ref={settingsBtnRef} onClick={() => setShowSettings(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-xl transition-colors">
+            <button ref={settingsBtnRef} onClick={() => setShowSettings(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
               <Settings className="w-6 h-6" />
             </button>
-            <button ref={grammarRef} onClick={() => setShowGrammar(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-xl transition-colors">
+            <button ref={grammarRef} onClick={() => setShowGrammar(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
               <BookOpen className="w-6 h-6" />
             </button>
-             <button onClick={() => setShowAbout(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-xl transition-colors">
+             <button onClick={() => setShowAbout(true)} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
                <Info className="w-6 h-6" />
              </button>
           </div>
@@ -598,9 +598,12 @@ const App: React.FC = () => {
                   </span>
                   <div className="text-3xl sm:text-5xl font-display font-black text-french-dark tracking-tight">
                     <span className="text-french-blue">{puzzle.pronoun}</span> 
-                    <span className="mx-2 sm:mx-3 text-gray-300">·</span>
+                    <span className="mx-1 sm:mx-2 text-gray-300">·</span>
                     <span className="relative inline-block">
                         <span className="relative z-10 text-french-red">{puzzle.verb}</span>
+                        <svg className="absolute w-full h-3 bottom-0 left-0 text-red-200 z-0" viewBox="0 0 100 10" preserveAspectRatio="none">
+                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                        </svg>
                     </span>
                   </div>
                   <div className="text-sm sm:text-lg font-medium text-gray-400 mt-1 sm:mt-2">
