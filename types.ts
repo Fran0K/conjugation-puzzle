@@ -32,6 +32,12 @@ export interface PuzzleData {
   ruleSummary: string;
 }
 
+export interface GrammarDetail {
+  label: string; // e.g., "1er Groupe (-er)"
+  text: string;  // e.g., "Terminaisons: -e, -es, -e..."
+  examples?: string;
+}
+
 export interface GrammarRule {
   id: string;
   title: string;
@@ -39,6 +45,7 @@ export interface GrammarRule {
   description: string;
   example: string;
   color: string;
+  details?: GrammarDetail[]; // New field for expandable content
 }
 
 // Extended slot types for precise drag and drop validation

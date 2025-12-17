@@ -87,21 +87,21 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "Subjonctif Passé",
       "Subjonctif Plus-que-parfait": "Subjonctif P.Q.P."
     },
-    rules: {
-      "Présent": "Base + Terminaisons (-e, -s...)",
-      "Imparfait": "Nous (présent) - ons + -ais, -ait...",
-      "Futur Simple": "Infinitif + -ai, -as, -a...",
-      "Passé Simple": "Temps littéraire, terminaisons spécifiques.",
-      "Conditionnel Présent": "Radical Futur + Terminaisons Imparfait",
-      "Subjonctif Présent": "Ils (présent) - ent + -e, -es...",
-      "Subjonctif Imparfait": "Passé Simple (2e sg) + -sse, -t...",
-      "Passé Composé": "Auxiliaire (Présent) + Participe Passé",
-      "Plus-que-parfait": "Auxiliaire (Imparfait) + Participe Passé",
-      "Futur Antérieur": "Auxiliaire (Futur) + Participe Passé",
-      "Passé Antérieur": "Auxiliaire (Passé Simple) + Participe Passé",
-      "Conditionnel Passé": "Auxiliaire (Conditionnel) + Participe Passé",
-      "Subjonctif Passé": "Aux (Subj. Présent) + Participe Passé",
-      "Subjonctif Plus-que-parfait": "Aux (Subj. Imparfait) + Participe Passé"
+    "rules": {
+      "Présent": "Radical de l’infinitif + terminaisons du présent (3 groupes)",
+      "Imparfait": "Présent de l’indicatif (nous) - ons + ais, ais, ait, ions, iez, aient.",
+      "Futur Simple": "Infinitif complet + ai, as, a, ons, ez, ont.",
+      "Passé Simple": "Radical + terminaisons : -er → ai, as, a, âmes, âtes, èrent ; -ir/-re → is, is, it, îmes, îtes, irent ; irréguliers fréquents → us, us, ut, ûmes, ûtes, urent.",
+      "Conditionnel Présent": "Radical du futur simple + ais, ais, ait, ions, iez, aient.",
+      "Subjonctif Présent": "Présent de l’indicatif (ils) - ent + e, es, e, ions, iez, ent.",
+      "Subjonctif Imparfait": "Passé simple (3e personne du singulier) + sse, sses, ât/ît/ût, ssions, ssiez, ssent.",
+      "Passé Composé": "Auxiliaire avoir ou être au présent + participe passé.",
+      "Plus-que-parfait": "Auxiliaire avoir ou être à l’imparfait + participe passé.",
+      "Futur Antérieur": "Auxiliaire avoir ou être au futur simple + participe passé.",
+      "Passé Antérieur": "Auxiliaire avoir ou être au passé simple + participe passé.",
+      "Conditionnel Passé": "Auxiliaire avoir ou être au conditionnel présent + participe passé.",
+      "Subjonctif Passé": "Auxiliaire avoir ou être au subjonctif présent + participe passé.",
+      "Subjonctif Plus-que-parfait": "Auxiliaire avoir ou être au subjonctif imparfait + participe passé."
     }
   },
   en: {
@@ -189,21 +189,21 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "Subj. Past",
       "Subjonctif Plus-que-parfait": "Subj. Pluperfect"
     },
-    rules: {
-      "Présent": "Stem + Endings",
-      "Imparfait": "Nous form - ons + endings",
-      "Futur Simple": "Infinitive + endings",
-      "Passé Simple": "Literary tense",
-      "Conditionnel Présent": "Future stem + Imperfect endings",
-      "Subjonctif Présent": "Ils form - ent + endings",
-      "Subjonctif Imparfait": "Literary subjunctive",
-      "Passé Composé": "Aux (Present) + Participle",
-      "Plus-que-parfait": "Aux (Imperfect) + Participle",
-      "Futur Antérieur": "Aux (Future) + Participle",
-      "Passé Antérieur": "Aux (Past Hist.) + Participle",
-      "Conditionnel Passé": "Aux (Conditional) + Participle",
-      "Subjonctif Passé": "Aux (Subj.) + Participle",
-      "Subjonctif Plus-que-parfait": "Aux (Subj. Imp.) + Participle"
+    "rules": {
+      "Présent": "Infinitive stem + present tense endings (1st group: e, es, e, ons, ez, ent; 2nd group: is, is, it, issons, issez, issent; 3rd group: irregular forms).",
+      "Imparfait": "Indicative present (nous form) - ons + ais, ais, ait, ions, iez, aient.",
+      "Futur Simple": "Full infinitive + ai, as, a, ons, ez, ont.",
+      "Passé Simple": "Stem + endings: -er → ai, as, a, âmes, âtes, èrent; -ir/-re → is, is, it, îmes, îtes, irent; frequent irregulars → us, us, ut, ûmes, ûtes, urent.",
+      "Conditionnel Présent": "Simple future stem + ais, ais, ait, ions, iez, aient.",
+      "Subjonctif Présent": "Indicative present (ils form) - ent + e, es, e, ions, iez, ent.",
+      "Subjonctif Imparfait": "Simple past (3rd person singular) + sse, sses, ât/ît/ût, ssions, ssiez, ssent.",
+      "Passé Composé": "Auxiliary avoir or être in the present tense + past participle.",
+      "Plus-que-parfait": "Auxiliary avoir or être in the imperfect tense + past participle.",
+      "Futur Antérieur": "Auxiliary avoir or être in the simple future tense + past participle.",
+      "Passé Antérieur": "Auxiliary avoir or être in the simple past tense + past participle.",
+      "Conditionnel Passé": "Auxiliary avoir or être in the conditional present tense + past participle.",
+      "Subjonctif Passé": "Auxiliary avoir or être in the subjunctive present tense + past participle.",
+      "Subjonctif Plus-que-parfait": "Auxiliary avoir or être in the imperfect subjunctive tense + past participle."
     }
   },
   zh: {
@@ -292,20 +292,20 @@ export const TRANSLATIONS = {
       "Subjonctif Plus-que-parfait": "虚拟式愈过去"
     },
     rules: {
-      "Présent": "词根 + 词尾",
-      "Imparfait": "Nous词根 + 未完成词尾",
-      "Futur Simple": "不定式 + 将来时词尾",
-      "Passé Simple": "书面时态",
-      "Conditionnel Présent": "将来时词根 + 未完成词尾",
-      "Subjonctif Présent": "Ils词根 + 虚拟式词尾",
-      "Subjonctif Imparfait": "书面虚拟式",
-      "Passé Composé": "助动词(现在) + 分词",
-      "Plus-que-parfait": "助动词(未完成) + 分词",
-      "Futur Antérieur": "助动词(将来) + 分词",
-      "Passé Antérieur": "助动词(简单过去) + 分词",
-      "Conditionnel Passé": "助动词(条件) + 分词",
-      "Subjonctif Passé": "助动词(虚拟) + 分词",
-      "Subjonctif Plus-que-parfait": "助动词(虚未) + 分词"
+      "Présent": "不定式词干 + 现在时词尾（三组类型的动词）。",
+      "Imparfait": "现在时直陈式第一人称复数（nous）去掉 -ons + ais, ais, ait, ions, iez, aient。",
+      "Futur Simple": "动词完整不定式 + ai, as, a, ons, ez, ont。",
+      "Passé Simple": "词干 + 过去简单时词尾：-er 动词 → ai, as, a, âmes, âtes, èrent；-ir/-re 动词 → is, is, it, îmes, îtes, irent；常见不规则 → us, us, ut, ûmes, ûtes, urent。",
+      "Conditionnel Présent": "简单将来时词干 + 未完成过去时词尾 ais, ais, ait, ions, iez, aient。",
+      "Subjonctif Présent": "现在时直陈式第三人称复数（ils）去掉 -ent + e, es, e, ions, iez, ent。",
+      "Subjonctif Imparfait": "过去简单时第三人称单数形式作为词干 + sse, sses, ât/ît/ût, ssions, ssiez, ssent。",
+      "Passé Composé": "助动词 avoir 或 être 的现在时 + 过去分词。",
+      "Plus-que-parfait": "助动词 avoir 或 être 的未完成过去时 + 过去分词。",
+      "Futur Antérieur": "助动词 avoir 或 être 的简单将来时 + 过去分词。",
+      "Passé Antérieur": "助动词 avoir 或 être 的过去简单时 + 过去分词。",
+      "Conditionnel Passé": "助动词 avoir 或 être 的条件式现在时 + 过去分词。",
+      "Subjonctif Passé": "助动词 avoir 或 être 的虚拟式现在时 + 过去分词。",
+      "Subjonctif Plus-que-parfait": "助动词 avoir 或 être 的虚拟式未完成过去时 + 过去分词。"
     }
   },
   ja: {
@@ -394,20 +394,20 @@ export const TRANSLATIONS = {
       "Subjonctif Plus-que-parfait": "接続法大過去"
     },
     rules: {
-      "Présent": "語幹 + 語尾",
-      "Imparfait": "Nous語幹 + 半過去語尾",
-      "Futur Simple": "不定詞 + 未来語尾",
-      "Passé Simple": "書き言葉",
-      "Conditionnel Présent": "未来語幹 + 半過去語尾",
-      "Subjonctif Présent": "Ils語幹 + 接続法語尾",
-      "Subjonctif Imparfait": "書き言葉",
-      "Passé Composé": "助動詞(現在) + 分詞",
-      "Plus-que-parfait": "助動詞(半過去) + 分詞",
-      "Futur Antérieur": "助動詞(未来) + 分詞",
-      "Passé Antérieur": "助動詞(単純過去) + 分詞",
-      "Conditionnel Passé": "助動詞(条件) + 分詞",
-      "Subjonctif Passé": "助動詞(接続) + 分詞",
-      "Subjonctif Plus-que-parfait": "助動詞(接半) + 分詞"
+      "Présent": "不定詞の語幹 + 現在形の語尾 (3群動詞)。",
+      "Imparfait": "直説法現在形 (nous形) - ons + ais, ais, ait, ions, iez, aient。",
+      "Futur Simple": "不定詞全体 + ai, as, a, ons, ez, ont。",
+      "Passé Simple": "語幹 + 語尾: -er → ai, as, a, âmes, âtes, èrent; -ir/-re → is, is, it, îmes, îtes, irent; よくある不規則動詞 → us, us, ut, ûmes, ûtes, urent。",
+      "Conditionnel Présent": "単純未来形の語幹 + ais, ais, ait, ions, iez, aient。",
+      "Subjonctif Présent": "直説法現在形 (ils形) - ent + e, es, e, ions, iez, ent。",
+      "Subjonctif Imparfait": "単純過去形 (三人称単数) + sse, sses, ât/ît/ût, ssions, ssiez, ssent。",
+      "Passé Composé": "助動詞 avoir または être の現在形 + 過去分詞。",
+      "Plus-que-parfait": "助動詞 avoir または être の半過去形 + 過去分詞。",
+      "Futur Antérieur": "助動詞 avoir または être の単純未来形 + 過去分詞。",
+      "Passé Antérieur": "助動詞 avoir または être の単純過去形 + 過去分詞。",
+      "Conditionnel Passé": "助動詞 avoir または être の条件法現在形 + 過去分詞。",
+      "Subjonctif Passé": "助動詞 avoir または être の接続法現在形 + 過去分詞。",
+      "Subjonctif Plus-que-parfait": "助動詞 avoir または être の接続法半過去形 + 過去分詞。"
     }
   }
 };
