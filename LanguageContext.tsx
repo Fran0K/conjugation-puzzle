@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { Language, TRANSLATIONS } from './locales';
+import { Language, TRANSLATIONS,LocalizedGrammarRule } from './locales';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: keyof typeof TRANSLATIONS.fr.ui) => string;
   tTense: (key: string) => string;
-  tRule: (key: string) => string;
+  tRule: (key: string) => LocalizedGrammarRule | null;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -41,9 +41,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     return TRANSLATIONS[language].tenses[tenseId] || tenseId;
   };
 
-  const tRule = (tenseId: string): string => {
+  const tRule = (tenseId: string): LocalizedGrammarRule | null => {
     // @ts-ignore
-    return TRANSLATIONS[language].rules[tenseId] || "";
+    return TRANSLATIONS[language].rules[tenseId] || TRANSLATIONS['fr'].rules[tenseId] || null;
   };
 
   return (

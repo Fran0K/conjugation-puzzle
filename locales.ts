@@ -1,6 +1,19 @@
 
 export type Language = 'fr' | 'en' | 'zh' | 'ja';
 
+export interface LocalizedGrammarRule {
+  title: string;
+  formula: string;
+  description: string;
+  example: string;
+  details?: {
+    label: string;
+    text: string;
+    examples?: string;
+  }[];
+}
+
+
 export const TRANSLATIONS = {
   fr: {
     ui: {
@@ -27,6 +40,7 @@ export const TRANSLATIONS = {
       explanation: "Explication",
       filter_title: "Choisir les Temps",
       filter_desc: "Sélectionnez les temps à pratiquer.",
+      Detail:"Détails",
       select_all: "Tout",
       deselect_all: "Rien",
       cancel: "Annuler",
@@ -87,21 +101,224 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "Subjonctif Passé",
       "Subjonctif Plus-que-parfait": "Subjonctif P.Q.P."
     },
-    "rules": {
-      "Présent": "Radical de l’infinitif + terminaisons du présent (3 groupes)",
-      "Imparfait": "Présent de l’indicatif (nous) - ons + ais, ais, ait, ions, iez, aient.",
-      "Futur Simple": "Infinitif complet + ai, as, a, ons, ez, ont.",
-      "Passé Simple": "Radical + terminaisons : -er → ai, as, a, âmes, âtes, èrent ; -ir/-re → is, is, it, îmes, îtes, irent ; irréguliers fréquents → us, us, ut, ûmes, ûtes, urent.",
-      "Conditionnel Présent": "Radical du futur simple + ais, ais, ait, ions, iez, aient.",
-      "Subjonctif Présent": "Présent de l’indicatif (ils) - ent + e, es, e, ions, iez, ent.",
-      "Subjonctif Imparfait": "Passé simple (3e personne du singulier) + sse, sses, ât/ît/ût, ssions, ssiez, ssent.",
-      "Passé Composé": "Auxiliaire avoir ou être au présent + participe passé.",
-      "Plus-que-parfait": "Auxiliaire avoir ou être à l’imparfait + participe passé.",
-      "Futur Antérieur": "Auxiliaire avoir ou être au futur simple + participe passé.",
-      "Passé Antérieur": "Auxiliaire avoir ou être au passé simple + participe passé.",
-      "Conditionnel Passé": "Auxiliaire avoir ou être au conditionnel présent + participe passé.",
-      "Subjonctif Passé": "Auxiliaire avoir ou être au subjonctif présent + participe passé.",
-      "Subjonctif Plus-que-parfait": "Auxiliaire avoir ou être au subjonctif imparfait + participe passé."
+    rules: {
+      "Présent": {
+        "title": "Présent",
+        "formula": "Radical de l’infinitif + terminaisons du présent (3 groupes)",
+        "description": "Temps de base pour exprimer une action actuelle, une habitude ou une vérité générale.",
+        "example": "Je parle, je finis, je prends",
+        "details": [
+          {
+            "label": "1er groupe (-er)",
+            "text": "Radical de l’infinitif sans -er + e, es, e, ons, ez, ent",
+            "examples": "je parle, nous parlons"
+          },
+          {
+            "label": "2e groupe (-ir)",
+            "text": "Radical de l’infinitif sans -ir + is, is, it, issons, issez, issent",
+            "examples": "je finis, nous finissons"
+          },
+          {
+            "label": "3e groupe",
+            "text": "Radicaux et terminaisons variables selon le verbe",
+            "examples": "je prends, nous venons"
+          }
+        ]
+      },
+      "Imparfait": {
+        "title": "Imparfait",
+        "formula": "Présent (nous) - ons + terminaisons de l’imparfait",
+        "description": "TTemps du passé pour exprimer une habitude, une description ou une action en cours.",
+        "example": "Je parlais, je finissais, je prenais",
+        "details": [
+          {
+            "label": "Formation générale",
+            "text": "Base du présent à la 1re personne du pluriel sans -ons + ais, ais, ait, ions, iez, aient",
+            "examples": "nous parlons → je parlais"
+          }
+        ]
+      },
+      "Futur Simple": {
+        "title": "Futur Simple",
+        "formula": "Infinitif + terminaisons du futur simple",
+        "description": "Temps pour exprimer une action à venir ou une certitude future.",
+        "example": "Je parlerai, je finirai, je prendrai",
+        "details": [
+          {
+            "label": "Formation générale",
+            "text": "Infinitif (ou radical irrégulier) + ai, as, a, ons, ez, ont",
+            "examples": "parler → je parlerai"
+          }
+        ]
+      },
+      // "Passé Simple": {
+      //   "title": "Passé Simple",
+      //   "formula": "Radical + terminaisons du passé simple",
+      //   "description": "Temps littéraire du passé exprimant une action ponctuelle et achevée.",
+      //   "example": "Je parlai, je finis, je pris",
+      //   "details": [
+      //     {
+      //       "label": "Usage",
+      //       "text": "Employé principalement à l’écrit dans les récits et textes littéraires",
+      //       "examples": "il entra, ils partirent"
+      //     }
+      //   ]
+      // },
+      "Conditionnel Présent": {
+        "title": "Conditionnel Présent",
+        "formula": "Infinitif + terminaisons",
+        "description": "Temps pour exprimer une hypothèse, une condition ou une demande polie.",
+        "example": "Je parlerais, je finirais, je prendrais",
+        "details": [
+          {
+            "label": "Formation générale",
+            "text": "Infinitif (ou radical du futur) + ais, ais, ait, ions, iez, aient",
+            "examples": "venir → je viendrais"
+          }
+        ]
+      },
+      "Subjonctif Présent": {
+        "title": "Subjonctif Présent",
+        "formula": "Radical du présent (ils) + terminaisons du subjonctif",
+        "description": "Mode utilisé pour exprimer le doute, le souhait, la nécessité ou le sentiment.",
+        "example": "Que je parle, que je finisse, que je prenne",
+        "details": [
+          {
+            "label": "Formation générale",
+            "text": "Base de la 3e personne du pluriel au présent sans -ent + e, es, e, ions, iez, ent",
+            "examples": "ils parlent → que je parle"
+          }
+        ]
+      },
+      "Subjonctif Imparfait": {
+        "title": "Subjonctif Imparfait",
+        "formula": "Radical du passé simple + terminaisons du subjonctif imparfait",
+        "description": "Temps littéraire exprimant une action incertaine dans le passé.",
+        "example": "Que je parlasse, que je finisse, que je prisse",
+        "details": [
+          {
+            "label": "Usage",
+            "text": "Employé uniquement dans la langue écrite et littéraire",
+            "examples": "qu’il vînt, qu’ils eussent"
+          }
+        ]
+      },
+      "Passé Composé": {
+        "title": "Passé Composé",
+        "formula": "Auxiliaire (avoir/être) au présent + participe passé",
+        "description": "Temps du passé exprimant une action achevée avec un lien au présent.",
+        "example": "J’ai parlé, je suis allé",
+        "details": [
+          {
+            "label": "Avec avoir",
+            "text": "Avoir au présent + participe passé",
+            "examples": "j’ai fini"
+          },
+          {
+            "label": "Avec être",
+            "text": "Être au présent + participe passé (verbes de mouvement et pronominaux)",
+            "examples": "je suis venu"
+          }
+        ]
+      },
+      "Plus-que-parfait": {
+        "title": "Plus-que-parfait",
+        "formula": "Auxiliaire (avoir/être) à l’imparfait + participe passé",
+        "description": "Temps du passé exprimant une action antérieure à une autre action passée.",
+        "example": "J’avais parlé, j’étais parti",
+        "details": [
+          {
+            "label": "Avec avoir",
+            "text": "Avoir à l’imparfait + participe passé",
+            "examples": "j’avais fini"
+          },
+          {
+            "label": "Avec être",
+            "text": "Être à l’imparfait + participe passé",
+            "examples": "j’étais arrivé"
+          }
+        ]
+      },
+      "Futur Antérieur": {
+        "title": "Futur Antérieur",
+        "formula": "Auxiliaire (avoir/être) au futur simple + participe passé",
+        "description": "Temps exprimant une action achevée avant une autre action future.",
+        "example": "J’aurai parlé, je serai parti",
+        "details": [
+          {
+            "label": "Avec avoir",
+            "text": "Avoir au futur simple + participe passé",
+            "examples": "j’aurai fini"
+          },
+          {
+            "label": "Avec être",
+            "text": "Être au futur simple + participe passé",
+            "examples": "je serai venu"
+          }
+        ]
+      },
+      "Passé Antérieur": {
+        "title": "Passé Antérieur",
+        "formula": "Auxiliaire (avoir/être) au passé simple + participe passé",
+        "description": "Temps littéraire exprimant une action achevée immédiatement avant une autre action passée.",
+        "example": "J’eus parlé, je fus parti",
+        "details": [
+          {
+            "label": "Usage",
+            "text": "Employé exclusivement dans la langue écrite et littéraire",
+            "examples": "il eut fini"
+          }
+        ]
+      },
+      "Conditionnel Passé": {
+        "title": "Conditionnel Passé",
+        "formula": "Auxiliaire (avoir/être) au conditionnel présent + participe passé",
+        "description": "Temps pour exprimer une action hypothétique non réalisée dans le passé.",
+        "example": "J’aurais parlé, je serais parti",
+        "details": [
+          {
+            "label": "Avec avoir",
+            "text": "Avoir au conditionnel présent + participe passé",
+            "examples": "j’aurais fini"
+          },
+          {
+            "label": "Avec être",
+            "text": "Être au conditionnel présent + participe passé",
+            "examples": "je serais venu"
+          }
+        ]
+      },
+      "Subjonctif Passé": {
+        "title": "Subjonctif Passé",
+        "formula": "Auxiliaire (avoir/être) au subjonctif présent + participe passé",
+        "description": "Temps exprimant une action achevée liée à une expression de doute ou de sentiment.",
+        "example": "Que j’aie parlé, que je sois parti",
+        "details": [
+          {
+            "label": "Avec avoir",
+            "text": "Avoir au subjonctif présent + participe passé",
+            "examples": "que j’aie fini"
+          },
+          {
+            "label": "Avec être",
+            "text": "Être au subjonctif présent + participe passé",
+            "examples": "que je sois venu"
+          }
+        ]
+      },
+      "Subjonctif Plus-que-parfait": {
+        "title": "Subjonctif Plus-que-parfait",
+        "formula": "Auxiliaire (avoir/être) au subjonctif imparfait + participe passé",
+        "description": "Temps littéraire exprimant une action achevée et incertaine dans le passé.",
+        "example": "Que j’eusse parlé, que je fusse parti",
+        "details": [
+          {
+            "label": "Usage",
+            "text": "Employé uniquement dans la langue écrite et littéraire",
+            "examples": "qu’il eût fini"
+          }
+        ]
+      }
     }
   },
   en: {
@@ -129,13 +346,14 @@ export const TRANSLATIONS = {
       explanation: "Note",
       filter_title: "Tenses",
       filter_desc: "Select tenses.",
+      Detail: "Details",
       select_all: "All",
       deselect_all: "None",
       cancel: "Cancel",
       validate: "OK",
       regular: "Regular",
       irregular: "Irregular",
-      about_desc: "ConjuPuzzle helps learners master French verb conjugation by assembling stems and endings",
+      about_desc: "ConjuPuzzle helps learners master French verb conjugation by assembling bases and endings",
       author: "By",
       version: "v1.0.0",
       how_to_title: "How to play",
@@ -167,7 +385,7 @@ export const TRANSLATIONS = {
       welcome_title: "Welcome to Conjugation Puzzle",
       welcome_subtitle: "Master French conjugation the fun way.",
       onboarding_logic_title: "The Logic",
-      onboarding_logic_desc: "Most verbs follow this pattern: Stem + Ending.",
+      onboarding_logic_desc: "Most verbs follow this pattern: Base + Ending.",
       onboarding_action_title: "Your Mission",
       onboarding_action_desc: "Drag or Click pieces from the tray to the empty slots to build the conjugated verb.",
       start_game: "Start Game",
@@ -189,22 +407,236 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "Subj. Past",
       "Subjonctif Plus-que-parfait": "Subj. Pluperfect"
     },
-    "rules": {
-      "Présent": "Infinitive stem + present tense endings (3 Groups).",
-      "Imparfait": "Indicative present (nous form) - ons + ais, ais, ait, ions, iez, aient.",
-      "Futur Simple": "Full infinitive + ai, as, a, ons, ez, ont.",
-      "Passé Simple": "Stem + endings: -er → ai, as, a, âmes, âtes, èrent; -ir/-re → is, is, it, îmes, îtes, irent; frequent irregulars → us, us, ut, ûmes, ûtes, urent.",
-      "Conditionnel Présent": "Simple future stem + ais, ais, ait, ions, iez, aient.",
-      "Subjonctif Présent": "Indicative present (ils form) - ent + e, es, e, ions, iez, ent.",
-      "Subjonctif Imparfait": "Simple past (3rd person singular) + sse, sses, ât/ît/ût, ssions, ssiez, ssent.",
-      "Passé Composé": "Auxiliary avoir or être in the present tense + past participle.",
-      "Plus-que-parfait": "Auxiliary avoir or être in the imperfect tense + past participle.",
-      "Futur Antérieur": "Auxiliary avoir or être in the simple future tense + past participle.",
-      "Passé Antérieur": "Auxiliary avoir or être in the simple past tense + past participle.",
-      "Conditionnel Passé": "Auxiliary avoir or être in the conditional present tense + past participle.",
-      "Subjonctif Passé": "Auxiliary avoir or être in the subjunctive present tense + past participle.",
-      "Subjonctif Plus-que-parfait": "Auxiliary avoir or être in the imperfect subjunctive tense + past participle."
+    rules:{
+      "Présent": {
+        "title": "Present Indicative",
+        "formula": "Infinitive base + present tense endings (3 verb groups)",
+        "description": "Used to express a current action, a habitual action, or a general truth.",
+        "example": "Je parle, je finis, je prends",
+        "details": [
+          {
+            "label": "First group verbs (-er)",
+            "text": "Remove -er from the infinitive, add e, es, e, ons, ez, ent",
+            "examples": "je parle, nous parlons"
+          },
+          {
+            "label": "Second group verbs (-ir)",
+            "text": "Remove -ir from the infinitive, add is, is, it, issons, issez, issent",
+            "examples": "je finis, nous finissons"
+          },
+          {
+            "label": "Third group verbs",
+            "text": "Irregular bases and endings depending on the verb",
+            "examples": "je prends, nous venons"
+          }
+        ]
+      },
+      "Imparfait": {
+        "title": "Imperfect Indicative",
+        "formula": "Present tense nous form minus -ons + imperfect endings",
+        "description": "Used to describe habitual actions, background descriptions, or ongoing actions in the past.",
+        "example": "Je parlais, je finissais, je prenais",
+        "details": [
+          {
+            "label": "Basic formation",
+            "text": "Take the first person plural present form, remove -ons, add ais, ais, ait, ions, iez, aient",
+            "examples": "nous parlons → je parlais"
+          }
+        ]
+      },
+      "Futur Simple": {
+        "title": "Simple Future",
+        "formula": "Infinitive + simple future endings",
+        "description": "Used to express future actions or certainty about the future.",
+        "example": "Je parlerai, je finirai, je prendrai",
+        "details": [
+          {
+            "label": "Basic formation",
+            "text": "Infinitive or irregular future base + ai, as, a, ons, ez, ont",
+            "examples": "parler → je parlerai"
+          }
+        ]
+      },
+      "Passé Simple": {
+        "title": "Simple Past Indicative",
+        "formula": "base + simple past endings",
+        "description": "A literary tense used in written narratives to express completed past actions.",
+        "example": "Je parlai, je finis, je pris",
+        "details": [
+          {
+            "label": "Usage",
+            "text": "Used mainly in literature, narratives, and formal written texts",
+            "examples": "il entra, ils partirent"
+          }
+        ]
+      },
+      "Conditionnel Présent": {
+        "title": "Present Conditional",
+        "formula": "Future base + imperfect endings",
+        "description": "Used to express hypotheses, conditional results, assumptions, or polite requests.",
+        "example": "Je parlerais, je finirais, je prendrais",
+        "details": [
+          {
+            "label": "Basic formation",
+            "text": "Infinitive or future base + ais, ais, ait, ions, iez, aient",
+            "examples": "venir → je viendrais"
+          }
+        ]
+      },
+      "Subjonctif Présent": {
+        "title": "Present Subjunctive",
+        "formula": "Present tense ils form minus -ent + subjunctive endings",
+        "description": "Used to express doubt, subjectivity, emotion, desire, or necessity.",
+        "example": "Que je parle, que je finisse, que je prenne",
+        "details": [
+          {
+            "label": "Basic formation",
+            "text": "Take the third person plural present form, remove -ent, add e, es, e, ions, iez, ent",
+            "examples": "ils parlent → que je parle"
+          }
+        ]
+      },
+      "Subjonctif Imparfait": {
+        "title": "Imperfect Subjunctive",
+        "formula": "Simple past base + imperfect subjunctive endings",
+        "description": "A literary tense used in writing to express uncertainty or subjectivity in the past.",
+        "example": "Que je parlasse, que je finisse, que je prisse",
+        "details": [
+          {
+            "label": "Usage",
+            "text": "Used only in literary and formal written French, not in modern spoken language",
+            "examples": "qu’il vînt, qu’ils eussent"
+          }
+        ]
+      },
+      "Passé Composé": {
+        "title": "Compound Past",
+        "formula": "Auxiliary avoir / être in the present + past participle",
+        "description": "Used to express a completed past action with relevance to the present.",
+        "example": "J’ai parlé, je suis allé",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most transitive and intransitive verbs; the past participle usually does not agree with the subject",
+            "examples": "j’ai fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and state-change verbs and all reflexive verbs; the past participle agrees with the subject",
+            "examples": "je suis venu"
+          }
+        ]
+      },
+      "Plus-que-parfait": {
+        "title": "Pluperfect Indicative",
+        "formula": "Auxiliary avoir / être in the imperfect + past participle",
+        "description": "Used to express an action completed before another past action.",
+        "example": "J’avais parlé, j’étais parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs, following the same rules as the compound past with avoir",
+            "examples": "j’avais fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; the past participle agrees with the subject",
+            "examples": "j’étais arrivé"
+          }
+        ]
+      },
+      "Futur Antérieur": {
+        "title": "Future Perfect",
+        "formula": "Auxiliary avoir / être in the simple future + past participle",
+        "description": "Used to express an action that will be completed before a future moment.",
+        "example": "J’aurai parlé, je serai parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs, following the same rules as the compound past with avoir",
+            "examples": "j’aurai fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; the past participle agrees with the subject",
+            "examples": "je serai venu"
+          }
+        ]
+      },
+      "Passé Antérieur": {
+        "title": "Past Anterior",
+        "formula": "Auxiliary avoir / être in the simple past + past participle",
+        "description": "A literary tense expressing an action completed immediately before another past action.",
+        "example": "J’eus parlé, je fus parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs, following the same rules as the compound past with avoir; literary usage only",
+            "examples": "il eut fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; past participle agrees with the subject; literary usage only",
+            "examples": "il fut venu"
+          }
+        ]
+      },
+      "Conditionnel Passé": {
+        "title": "Past Conditional",
+        "formula": "Auxiliary avoir / être in the present conditional + past participle",
+        "description": "Used to express an unrealized or hypothetical action in the past.",
+        "example": "J’aurais parlé, je serais parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs to express an action that would have occurred under certain conditions",
+            "examples": "j’aurais fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; the past participle agrees with the subject",
+            "examples": "je serais venu"
+          }
+        ]
+      },
+      "Subjonctif Passé": {
+        "title": "Past Subjunctive",
+        "formula": "Auxiliary avoir / être in the present subjunctive + past participle",
+        "description": "Used to express a completed action linked to doubt, emotion, or subjectivity.",
+        "example": "Que j’aie parlé, que je sois parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs to express a completed action in a subjunctive context",
+            "examples": "que j’aie fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; the past participle agrees with the subject",
+            "examples": "que je sois venu"
+          }
+        ]
+      },
+      "Subjonctif Plus-que-parfait": {
+        "title": "Pluperfect Subjunctive",
+        "formula": "Auxiliary avoir / être in the imperfect subjunctive + past participle",
+        "description": "A literary tense used to express a completed action in the past with a hypothetical or subjective nuance.",
+        "example": "Que j’eusse parlé, que je fusse parti",
+        "details": [
+          {
+            "label": "Using avoir",
+            "text": "Used with most verbs; follows the same rules as the past subjunctive; literary usage only",
+            "examples": "qu’il eût fini"
+          },
+          {
+            "label": "Using être",
+            "text": "Used with movement and reflexive verbs; the past participle agrees with the subject; literary usage only",
+            "examples": "qu’il fût venu"
+          }
+        ]
+      }
     }
+
   },
   zh: {
     ui: {
@@ -231,6 +663,7 @@ export const TRANSLATIONS = {
       explanation: "解析",
       filter_title: "时态",
       filter_desc: "选择练习时态",
+      Detail: "详细",
       select_all: "全选",
       deselect_all: "全不选",
       cancel: "取消",
@@ -291,21 +724,234 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "虚拟式过去时",
       "Subjonctif Plus-que-parfait": "虚拟式愈过去"
     },
-    rules: {
-      "Présent": "不定式词干 + 现在时词尾(三组类型的动词)",
-      "Imparfait": "直陈式现在时第一人称复数（nous）的词干 + ais, ais, ait, ions, iez, aient",
-      "Futur Simple": "动词完整不定式 + ai, as, a, ons, ez, ont",
-      "Passé Simple": "词干 + 过去简单时词尾：-er 动词 → ai, as, a, âmes, âtes, èrent；-ir/-re 动词 → is, is, it, îmes, îtes, irent；常见不规则 → us, us, ut, ûmes, ûtes, urent。",
-      "Conditionnel Présent": "简单将来时词干 + 未完成过去时词尾 ais, ais, ait, ions, iez, aient",
-      "Subjonctif Présent": "直陈式现在时第三人称复数（ils）的词干 + e, es, e, ions, iez, ent",
-      "Subjonctif Imparfait": "过去简单时第三人称单数形式作为词干 + sse, sses, ât/ît/ût, ssions, ssiez, ssent",
-      "Passé Composé": "助动词 avoir 或 être 的现在时 + 过去分词",
-      "Plus-que-parfait": "助动词 avoir 或 être 的未完成过去时 + 过去分词",
-      "Futur Antérieur": "助动词 avoir 或 être 的简单将来时 + 过去分词",
-      "Passé Antérieur": "助动词 avoir 或 être 的过去简单时 + 过去分词",
-      "Conditionnel Passé": "助动词 avoir 或 être 的条件式现在时 + 过去分词",
-      "Subjonctif Passé": "助动词 avoir 或 être 的虚拟式现在时 + 过去分词",
-      "Subjonctif Plus-que-parfait": "助动词 avoir 或 être 的虚拟式未完成过去时 + 过去分词"
+    rules:{    
+      "Présent": {
+        "title": "直陈式现在时",
+        "formula": "不定式词干 + 现在时变位词尾（3 个变位组）",
+        "description": "用于表达当前正在发生的动作、习惯性动作或客观事实。",
+        "example": "Je parle, je finis, je prends",
+        "details": [
+          {
+            "label": "第一组动词（-er）",
+            "text": "去掉不定式词尾 -er，加 e, es, e, ons, ez, ent",
+            "examples": "je parle, nous parlons"
+          },
+          {
+            "label": "第二组动词（-ir）",
+            "text": "去掉不定式词尾 -ir，加 is, is, it, issons, issez, issent",
+            "examples": "je finis, nous finissons"
+          },
+          {
+            "label": "第三组动词",
+            "text": "词干和词尾变化不规则，需单独记忆",
+            "examples": "je prends, nous venons"
+          }
+        ]
+      },
+      "Imparfait": {
+        "title": "直陈式未完成过去时",
+        "formula": "现在时 nous 形式去掉 -ons + 未完成过去时词尾",
+        "description": "用于描述过去经常发生的动作、背景性描述或过去某一时刻正在进行的动作。",
+        "example": "Je parlais, je finissais, je prenais",
+        "details": [
+          {
+            "label": "基本构成",
+            "text": "现在时第一人称复数形式去掉 -ons，加 ais, ais, ait, ions, iez, aient",
+            "examples": "nous parlons → je parlais"
+          }
+        ]
+      },
+      "Futur Simple": {
+        "title": "直陈式简单将来时",
+        "formula": "不定式 + 简单将来时词尾",
+        "description": "用于表达将来要发生的动作或对未来的确定判断。",
+        "example": "Je parlerai, je finirai, je prendrai",
+        "details": [
+          {
+            "label": "基本构成",
+            "text": "不定式或不规则将来词干 + ai, as, a, ons, ez, ont",
+            "examples": "parler → je parlerai"
+          }
+        ]
+      },
+      "Passé Simple": {
+        "title": "直陈式简单过去时",
+        "formula": "词干 + 简单过去时词尾",
+        "description": "文学性时态，用于书面语中表达一次性、已完成的过去动作。",
+        "example": "Je parlai, je finis, je pris",
+        "details": [
+          {
+            "label": "使用场景",
+            "text": "主要用于文学作品、叙事文本和正式书面语",
+            "examples": "il entra, ils partirent"
+          }
+        ]
+      },
+      "Conditionnel Présent": {
+        "title": "条件式现在时",
+        "formula": "将来时词干 + 未完成过去时词尾",
+        "description": "用于表达假设、条件结果、推测或礼貌请求。",
+        "example": "Je parlerais, je finirais, je prendrais",
+        "details": [
+          {
+            "label": "基本构成",
+            "text": "不定式或将来时词干 + ais, ais, ait, ions, iez, aient",
+            "examples": "venir → je viendrais"
+          }
+        ]
+      },
+      "Subjonctif Présent": {
+        "title": "虚拟式现在时",
+        "formula": "现在时 ils 形式去掉 -ent + 虚拟式词尾",
+        "description": "用于表达不确定性、主观判断、情感、愿望或必要性。",
+        "example": "Que je parle, que je finisse, que je prenne",
+        "details": [
+          {
+            "label": "基本构成",
+            "text": "现在时第三人称复数形式去掉 -ent，加 e, es, e, ions, iez, ent",
+            "examples": "ils parlent → que je parle"
+          }
+        ]
+      },
+      "Subjonctif Imparfait": {
+        "title": "虚拟式未完成过去时",
+        "formula": "简单过去时词干 + 虚拟式未完成过去时词尾",
+        "description": "文学性时态，用于书面语中表达过去的不确定或主观动作。",
+        "example": "Que je parlasse, que je finisse, que je prisse",
+        "details": [
+          {
+            "label": "使用场景",
+            "text": "仅用于文学和正式书面语，现代口语中已不使用",
+            "examples": "qu’il vînt, qu’ils eussent"
+          }
+        ]
+      },
+      "Passé Composé": {
+        "title": "复合过去时",
+        "formula": "助动词 avoir / être 现在时 + 过去分词",
+        "description": "用于表达已经完成且与现在有关联的过去动作。",
+        "example": "J’ai parlé, je suis allé",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数及物动词和不及物动词，动词后可直接接宾语；过去分词通常不与主语配合",
+            "examples": "j’ai fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于 16 个运动和状态变化动词及所有自反动词，过去分词需与主语进行性数配合",
+            "examples": "je suis venu"
+          }
+        ]
+      },
+      "Plus-que-parfait": {
+        "title": "直陈式愈过去时",
+        "formula": "助动词 avoir / être 未完成过去时 + 过去分词",
+        "description": "用于表达在另一过去动作之前已经完成的动作。",
+        "example": "J’avais parlé, j’étais parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，规则与复合过去时中使用 avoir 相同",
+            "examples": "j’avais fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合",
+            "examples": "j’étais arrivé"
+          }
+        ]
+      },
+      "Futur Antérieur": {
+        "title": "先将来时",
+        "formula": "助动词 avoir / être 简单将来时 + 过去分词",
+        "description": "用于表达在未来某一时刻之前已经完成的动作。",
+        "example": "J’aurai parlé, je serai parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，规则与复合过去时中使用 avoir 相同",
+            "examples": "j’aurai fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合",
+            "examples": "je serai venu"
+          }
+        ]
+      },
+      "Passé Antérieur": {
+        "title": "直陈式先过去时",
+        "formula": "助动词 avoir / être 简单过去时 + 过去分词",
+        "description": "文学性时态，用于书面语中表示紧接另一过去动作之前完成的动作。",
+        "example": "J’eus parlé, je fus parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，规则与复合过去时中使用 avoir 相同，仅见于书面语",
+            "examples": "il eut fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合，仅用于文学语境",
+            "examples": "il fut venu"
+          }
+        ]
+      },
+      "Conditionnel Passé": {
+        "title": "条件式过去时",
+        "formula": "助动词 avoir / être 条件式现在时 + 过去分词",
+        "description": "用于表达过去未实现的假设或条件结果。",
+        "example": "J’aurais parlé, je serais parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，表示假设条件下本应完成的动作",
+            "examples": "j’aurais fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合",
+            "examples": "je serais venu"
+          }
+        ]
+      },
+      "Subjonctif Passé": {
+        "title": "虚拟式过去时",
+        "formula": "助动词 avoir / être 虚拟式现在时 + 过去分词",
+        "description": "用于表达已经完成但带有主观判断、情感或不确定性的动作。",
+        "example": "Que j’aie parlé, que je sois parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，表示在虚拟语境下已完成的动作",
+            "examples": "que j’aie fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合",
+            "examples": "que je sois venu"
+          }
+        ]
+      },
+      "Subjonctif Plus-que-parfait": {
+        "title": "虚拟式愈过去时",
+        "formula": "助动词 avoir / être 虚拟式未完成过去时 + 过去分词",
+        "description": "文学性时态，用于书面语中表达过去已完成但带有主观或假设色彩的动作。",
+        "example": "Que j’eusse parlé, que je fusse parti",
+        "details": [
+          {
+            "label": "使用 avoir",
+            "text": "用于大多数动词，规则与虚拟式过去时中使用 avoir 相同，仅用于文学语境",
+            "examples": "qu’il eût fini"
+          },
+          {
+            "label": "使用 être",
+            "text": "用于运动动词和自反动词，过去分词与主语进行性数配合，仅用于文学语境",
+            "examples": "qu’il fût venu"
+          }
+        ]
+      }    
     }
   },
   ja: {
@@ -333,6 +979,7 @@ export const TRANSLATIONS = {
       explanation: "解説",
       filter_title: "時制設定",
       filter_desc: "練習する時制を選択",
+      Detail: "詳細",
       select_all: "全選択",
       deselect_all: "全解除",
       cancel: "取消",
@@ -393,21 +1040,235 @@ export const TRANSLATIONS = {
       "Subjonctif Passé": "接続法過去",
       "Subjonctif Plus-que-parfait": "接続法大過去"
     },
-    rules: {
-      "Présent": "不定詞の語幹 + 現在形の語尾 (3群動詞)。",
-      "Imparfait": "直説法現在形 (nous形) - ons + ais, ais, ait, ions, iez, aient。",
-      "Futur Simple": "不定詞全体 + ai, as, a, ons, ez, ont。",
-      "Passé Simple": "語幹 + 語尾: -er → ai, as, a, âmes, âtes, èrent; -ir/-re → is, is, it, îmes, îtes, irent; よくある不規則動詞 → us, us, ut, ûmes, ûtes, urent。",
-      "Conditionnel Présent": "単純未来形の語幹 + ais, ais, ait, ions, iez, aient。",
-      "Subjonctif Présent": "直説法現在形 (ils形) - ent + e, es, e, ions, iez, ent。",
-      "Subjonctif Imparfait": "単純過去形 (三人称単数) + sse, sses, ât/ît/ût, ssions, ssiez, ssent。",
-      "Passé Composé": "助動詞 avoir または être の現在形 + 過去分詞。",
-      "Plus-que-parfait": "助動詞 avoir または être の半過去形 + 過去分詞。",
-      "Futur Antérieur": "助動詞 avoir または être の単純未来形 + 過去分詞。",
-      "Passé Antérieur": "助動詞 avoir または être の単純過去形 + 過去分詞。",
-      "Conditionnel Passé": "助動詞 avoir または être の条件法現在形 + 過去分詞。",
-      "Subjonctif Passé": "助動詞 avoir または être の接続法現在形 + 過去分詞。",
-      "Subjonctif Plus-que-parfait": "助動詞 avoir または être の接続法半過去形 + 過去分詞。"
+    rules:{
+      "Présent": {
+        "title": "直説法現在形",
+        "formula": "不定詞の語幹 + 現在形の語尾（3動詞群）",
+        "description": "現在行われている動作、習慣的な動作、または一般的な事実を表す。",
+        "example": "Je parle, je finis, je prends",
+        "details": [
+          {
+            "label": "第1群動詞（-er）",
+            "text": "不定詞から -er を取り除き、e, es, e, ons, ez, ent を付ける",
+            "examples": "je parle, nous parlons"
+          },
+          {
+            "label": "第2群動詞（-ir）",
+            "text": "不定詞から -ir を取り除き、is, is, it, issons, issez, issent を付ける",
+            "examples": "je finis, nous finissons"
+          },
+          {
+            "label": "第3群動詞",
+            "text": "動詞ごとに語幹や語尾が不規則に変化する",
+            "examples": "je prends, nous venons"
+          }
+        ]
+      },
+      "Imparfait": {
+        "title": "直説法半過去",
+        "formula": "現在形 nous 形 − ons + 半過去の語尾",
+        "description": "過去の習慣的動作、背景描写、または過去のある時点で進行中だった動作を表す。",
+        "example": "Je parlais, je finissais, je prenais",
+        "details": [
+          {
+            "label": "基本構成",
+            "text": "現在形1人称複数から -ons を除き、ais, ais, ait, ions, iez, aient を付ける",
+            "examples": "nous parlons → je parlais"
+          }
+        ]
+      },
+      "Futur Simple": {
+        "title": "直説法単純未来",
+        "formula": "不定詞 + 単純未来の語尾",
+        "description": "将来起こる動作や、未来に対する確実な判断を表す。",
+        "example": "Je parlerai, je finirai, je prendrai",
+        "details": [
+          {
+            "label": "基本構成",
+            "text": "不定詞または不規則な未来語幹 + ai, as, a, ons, ez, ont",
+            "examples": "parler → je parlerai"
+          }
+        ]
+      },
+      "Passé Simple": {
+        "title": "直説法単純過去",
+        "formula": "語幹 + 単純過去の語尾",
+        "description": "文学的時制で、書き言葉において完結した過去の動作を表す。",
+        "example": "Je parlai, je finis, je pris",
+        "details": [
+          {
+            "label": "用法",
+            "text": "主に文学作品、物語文、正式な書き言葉で使用される",
+            "examples": "il entra, ils partirent"
+          }
+        ]
+      },
+      "Conditionnel Présent": {
+        "title": "条件法現在",
+        "formula": "未来形の語幹 + 半過去の語尾",
+        "description": "仮定、条件の結果、推量、丁寧な依頼を表す。",
+        "example": "Je parlerais, je finirais, je prendrais",
+        "details": [
+          {
+            "label": "基本構成",
+            "text": "不定詞または未来語幹 + ais, ais, ait, ions, iez, aient",
+            "examples": "venir → je viendrais"
+          }
+        ]
+      },
+      "Subjonctif Présent": {
+        "title": "接続法現在",
+        "formula": "現在形 ils 形 − ent + 接続法の語尾",
+        "description": "疑い、主観、感情、願望、必要性を表す。",
+        "example": "Que je parle, que je finisse, que je prenne",
+        "details": [
+          {
+            "label": "基本構成",
+            "text": "現在形3人称複数から -ent を除き、e, es, e, ions, iez, ent を付ける",
+            "examples": "ils parlent → que je parle"
+          }
+        ]
+      },
+      "Subjonctif Imparfait": {
+        "title": "接続法半過去",
+        "formula": "単純過去の語幹 + 接続法半過去の語尾",
+        "description": "文学的時制で、過去における不確実または主観的な動作を表す。",
+        "example": "Que je parlasse, que je finisse, que je prisse",
+        "details": [
+          {
+            "label": "用法",
+            "text": "文学的・正式な書き言葉のみで使用され、現代口語では使われない",
+            "examples": "qu’il vînt, qu’ils eussent"
+          }
+        ]
+      },
+      "Passé Composé": {
+        "title": "複合過去",
+        "formula": "助動詞 avoir / être 現在形 + 過去分詞",
+        "description": "完了した過去の動作で、現在と関連性のあるものを表す。",
+        "example": "J’ai parlé, je suis allé",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "ほとんどの動詞で使用される。通常、過去分詞は主語と一致しない",
+            "examples": "j’ai fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動・状態変化動詞およびすべての再帰動詞で使用され、過去分詞は主語と性・数一致する",
+            "examples": "je suis venu"
+          }
+        ]
+      },
+      "Plus-que-parfait": {
+        "title": "直説法大過去",
+        "formula": "助動詞 avoir / être 半過去 + 過去分詞",
+        "description": "他の過去の動作よりも前に完了した動作を表す。",
+        "example": "J’avais parlé, j’étais parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "複合過去における avoir の用法と同じ規則で使用される",
+            "examples": "j’avais fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する",
+            "examples": "j’étais arrivé"
+          }
+        ]
+      },
+      "Futur Antérieur": {
+        "title": "前未来",
+        "formula": "助動詞 avoir / être 単純未来 + 過去分詞",
+        "description": "未来のある時点より前に完了する動作を表す。",
+        "example": "J’aurai parlé, je serai parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "複合過去と同様に、大部分の動詞で使用される",
+            "examples": "j’aurai fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する",
+            "examples": "je serai venu"
+          }
+        ]
+      },
+      "Passé Antérieur": {
+        "title": "直説法前過去",
+        "formula": "助動詞 avoir / être 単純過去 + 過去分詞",
+        "description": "文学的時制で、別の過去動作の直前に完了した動作を表す。",
+        "example": "J’eus parlé, je fus parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "大部分の動詞で使用され、文学的文脈に限定される",
+            "examples": "il eut fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する。文学語のみ",
+            "examples": "il fut venu"
+          }
+        ]
+      },
+      "Conditionnel Passé": {
+        "title": "条件法過去",
+        "formula": "助動詞 avoir / être 条件法現在 + 過去分詞",
+        "description": "過去において実現しなかった仮定や条件の結果を表す。",
+        "example": "J’aurais parlé, je serais parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "条件が満たされていれば起こったはずの動作を表す",
+            "examples": "j’aurais fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する",
+            "examples": "je serais venu"
+          }
+        ]
+      },
+      "Subjonctif Passé": {
+        "title": "接続法過去",
+        "formula": "助動詞 avoir / être 接続法現在 + 過去分詞",
+        "description": "疑い・感情・主観を伴う文脈で、すでに完了した動作を表す。",
+        "example": "Que j’aie parlé, que je sois parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "接続法の文脈で完了した動作を表す際に使用される",
+            "examples": "que j’aie fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する",
+            "examples": "que je sois venu"
+          }
+        ]
+      },
+      "Subjonctif Plus-que-parfait": {
+        "title": "接続法大過去",
+        "formula": "助動詞 avoir / être 接続法半過去 + 過去分詞",
+        "description": "文学的時制で、過去に完了した仮定的・主観的な動作を表す。",
+        "example": "Que j’eusse parlé, que je fusse parti",
+        "details": [
+          {
+            "label": "avoir を使用",
+            "text": "接続法過去と同様の規則で使用され、文学語に限定される",
+            "examples": "qu’il eût fini"
+          },
+          {
+            "label": "être を使用",
+            "text": "移動動詞・再帰動詞で使用され、過去分詞は主語と一致する。文学語のみ",
+            "examples": "qu’il fût venu"
+          }
+        ]
+      }
     }
+
   }
 };

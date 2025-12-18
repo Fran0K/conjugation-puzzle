@@ -16,7 +16,7 @@ import { Language } from './locales';
 // --- UTILS ---
 
 // Fisher-Yates shuffle
-function shuffleArray<T>(array: T[]): T[] {
+export function shuffleArray<T>(array: T[]): T[] {
   const newArr = [...array];
   for (let i = newArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -26,7 +26,7 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // Deduplicate and filter empty strings
-function cleanAndShuffle(correct: string | null | undefined, distractors: string[] | null | undefined): string[] {
+export function cleanAndShuffle(correct: string | null | undefined, distractors: string[] | null | undefined): string[] {
   const set = new Set<string>();
   if (correct && correct.trim()) set.add(correct.trim());
   if (distractors) {
@@ -423,8 +423,10 @@ const App: React.FC = () => {
        }
     }
   }
-
-  const translatedRuleSummary = puzzle ? tRule(puzzle.tense) : "";
+  
+  const localizedRuleObj = puzzle ? tRule(puzzle.tense) : null;
+  // -- hint message --
+  const translatedRuleFormula = localizedRuleObj ? localizedRuleObj.formula : "";
   const currentLangObj = LANGUAGES.find(l => l.code === language) || LANGUAGES[0];
   const showAuxConnectors = puzzle ? (puzzle.auxEnding !== null) : false;
   const showVerbConnectors = puzzle ? (puzzle.correctEnding !== null) : false;
@@ -625,7 +627,7 @@ const App: React.FC = () => {
                           <BookOpen className="w-3 h-3" />
                           <span className="uppercase font-bold tracking-widest text-[10px]">{t('rules')}</span>
                         </div>
-                        {translatedRuleSummary}
+                        {translatedRuleFormula}
                       </div>
                    </div>
                 )}

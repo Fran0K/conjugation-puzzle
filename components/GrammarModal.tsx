@@ -42,8 +42,10 @@ export const GrammarModal: React.FC<GrammarModalProps> = ({ isOpen, onClose }) =
 
           <div className="grid gap-4">
             {GRAMMAR_RULES.map((rule) => {
+              if (!rule.id) return null;
+              const localizedRule = tRule(rule.id);
               const isExpanded = expandedRuleId === rule.id;
-              
+              if (!localizedRule) return null;
               return (
                 <div 
                   key={rule.id} 
@@ -53,23 +55,23 @@ export const GrammarModal: React.FC<GrammarModalProps> = ({ isOpen, onClose }) =
                 >
                   <div className="p-5">
                     <div className="flex flex-row items-center justify-between mb-2">
-                      <h3 className="font-bold text-lg">{tTense(rule.id)}</h3>
+                      <h3 className="font-bold text-lg">{localizedRule.title || tTense(rule.id)}</h3>
                       <div className={`p-1 rounded-full ${isExpanded ? 'bg-black/10' : 'bg-transparent'}`}>
                         {isExpanded ? <ChevronUp className="w-5 h-5 opacity-70" /> : <ChevronDown className="w-5 h-5 opacity-50" />}
                       </div>
                     </div>
                     
-                    {/* <div className="font-mono text-sm bg-white/50 inline-block px-3 py-1 rounded mb-3 font-semibold">
-                      {rule.formula}
-                    </div> */}
+                    <div className="font-mono text-sm bg-white/50 inline-block px-3 py-1 rounded mb-3 font-semibold">
+                      {localizedRule.formula}
+                    </div>
                     
-                    <p className="text-sm mb-3 opacity-90 leading-relaxed">
-                      {tRule(rule.id) || rule.description}
-                    </p>
+                    {/* <p className="text-sm mb-3 opacity-90 leading-relaxed">
+                      {localizedRule.description}
+                    </p> */}
                     
                     {!isExpanded && (
                       <div className="text-sm italic font-medium opacity-75">
-                        Ex: {rule.example}
+                        Ex: {localizedRule.example}
                       </div>
                     )}
                   </div>
@@ -77,10 +79,10 @@ export const GrammarModal: React.FC<GrammarModalProps> = ({ isOpen, onClose }) =
                   {/* Expandable Content */}
                   {isExpanded && (
                     <div className="bg-white/40 border-t border-black/5 p-5 animate-in slide-in-from-top-2 duration-200">
-                       <h4 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-3">Détails</h4>
-                       {rule.details ? (
+                       <h4 className="text-xs font-bold uppercase tracking-widest opacity-60 mb-3">{t('Detail')}</h4>
+                       {localizedRule.details ? (
                          <div className="space-y-4">
-                           {rule.details.map((detail, idx) => (
+                           {localizedRule.details.map((detail, idx) => (
                              <div key={idx} className="bg-white/60 p-3 rounded-lg border border-white/50">
                                <div className="font-bold text-sm mb-1">{detail.label}</div>
                                <div className="text-sm opacity-90 mb-1">{detail.text}</div>
@@ -94,9 +96,9 @@ export const GrammarModal: React.FC<GrammarModalProps> = ({ isOpen, onClose }) =
                          </div>
                        ) : (
                          <div className="text-sm opacity-80">
-                            Exemple détaillé: <span className="font-medium italic">{rule.example}</span>
+                            Exemple détaillé: <span className="font-medium italic">{localizedRule.example}</span>
                             <br/><br/>
-                            {rule.description}
+                            {localizedRule.description}
                          </div>
                        )}
                     </div>
