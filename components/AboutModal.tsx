@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, Heart, Github, Linkedin, Rss, Eye, MousePointerClick, CheckCircle2, Plus, Puzzle, RotateCcw } from 'lucide-react';
+import { X, Heart, Github, Linkedin, Link, Eye, MousePointerClick, CheckCircle2, Plus, Puzzle, RotateCcw, Mail } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 interface AboutModalProps {
@@ -45,9 +45,24 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onResta
 
            {/* How To Play Section */}
            <div className="mb-8">
-             <h3 className="text-lg font-bold text-french-dark mb-4 flex items-center gap-2">             
-               {t('how_to_title')}
-             </h3>
+             <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-french-dark ">
+                {t('how_to_title')}
+              </h3>
+
+              {onRestartTutorial && (
+                <button 
+                  onClick={() => {
+                    onClose();
+                    onRestartTutorial();
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-bold transition-all text-xs"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                  {t('restart_tutorial')}
+                </button>
+              )}
+            </div>
              
              <div className="space-y-4">
                {/* Step 1 */}
@@ -96,23 +111,6 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onResta
              </div>
            </div>
 
-            {/* Restart Tutorial Button */}
-            {onRestartTutorial && (
-              <div className="mb-8 flex justify-center">
-                 <button 
-                  onClick={() => {
-                    onClose();
-                    onRestartTutorial();
-                  }}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-bold transition-all text-sm"
-                 >
-                    <RotateCcw className="w-4 h-4" />
-                    {/* @ts-ignore */}
-                    {t('restart_tutorial')}
-                 </button>
-              </div>
-            )}
-
            {/* Footer: Author */}
            <div className="w-full border-t border-gray-100 pt-6 pb-8 md:pb-10 text-center">
              <p className="text-sm text-gray-500 mb-2 font-semibold flex items-center justify-center gap-1">
@@ -126,10 +124,13 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onResta
                   <Github className="w-5 h-5" />
                 </a>
                 <a href="https://www.hacomata.buzz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-800 transition-colors">
-                  <Rss className="w-5 h-5" />
+                  <Link className="w-5 h-5" />
                 </a>
                 <a href="https://www.linkedin.com/in/haochang-lin-a99606223/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-800 transition-colors">
                   <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="mailto:lhc1256744295@hotmail.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-800 transition-colors">
+                  <Mail className="w-5 h-5" />
                 </a>
              </div>
            </div>
