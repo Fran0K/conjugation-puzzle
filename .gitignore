@@ -15,7 +15,11 @@ dist-ssr
 scripts/*.csv
 scripts/*.md
 scripts/*.json
-scripts/data/*
+
+scripts/data/*.csv
+scripts/data/*.json
+scripts/data/test/*.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

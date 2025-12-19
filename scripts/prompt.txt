@@ -1,0 +1,112 @@
+You are a French-conjugation data engine. 
+Given the infinitive verb variable "${verb}" (insert actual infinitive when calling), produce a single JSON object that EXACTLY matches the BATCH_SCHEMA and PUZZLE_SCHEMA below. Output MUST be valid JSON only (no explanations, no extra text, no comments). The "puzzles" array must contain EXACTLY 80 objects (8 persons × 10 tenses).
+
+BATCH_SCHEMA:
+{
+  "infinitive": string,
+  "translations": { "en": string, "zh": string, "ja": string },
+  "puzzles": [ PUZZLE_SCHEMA * 80 ]
+}
+
+PUZZLE_SCHEMA:
+{
+  "verb": string,
+  "tense": string,
+  "person": string,
+  "pronoun": string,
+  "is_regular": boolean,
+  "correctStem": string,
+  "correctEnding": string|null,
+  "distractorStems": [string],
+  "distractorEndings": [string]|null,
+  "auxStem": string|null,
+  "auxEnding": string|null,
+  "distractorAuxStems": [string]|null,
+  "distractorAuxEndings": [string]|null,
+  "ruleSummary": string,
+  "explanations": {
+      "en": string,
+      "zh": string,
+      "ja": string,
+      "fr": string
+  }
+}
+
+REQUIREMENTS & RULES (must be strictly followed):
+
+1) PERSONS (8):
+   Use exactly: "je", "tu", "il", "elle", "nous", "vous", "ils", "elles".
+   - Apply elision when the conjugated auxiliary or verb begins with a vowel or mute 'h':
+     - "je" -> "j'" (e.g., "j'ai", "j'habite").
+   - ALL SUBJUNCTIVE tenses must have pronoun prefixed by "Que":
+     - Examples: "Que je", "Que j'", "Qu'il", "Que nous", "Qu'elles".
+
+2) TENSES (10 total):
+   Simple tenses (5):
+     - "Présent"
+     - "Imparfait"
+     - "Futur Simple"
+     - "Conditionnel Présent"
+     - "Subjonctif Présent"
+   Compound tenses (5):
+     - "Passé Composé"
+     - "Plus-que-parfait"
+     - "Futur Antérieur"
+     - "Conditionnel Passé"
+     - "Subjonctif Passé"
+
+3) SIMPLE TENSE SPLIT LOGIC:
+   - For regular/predictable conjugations, split into stem + ending:
+     - correctStem = stem (string)
+     - correctEnding = ending (string)
+   - FOR HIGHLY IRREGULAR / FUSED FORMS (e.g., Être, Avoir, Aller, Faire in many present forms) DO NOT SPLIT:
+     - Put the entire conjugated form into correctStem (e.g., "Suis", "Ai", "Vais", "Est")
+     - Set correctEnding = null
+   - If in doubt for present of Être/Avoir/Aller/Faire, prefer correctEnding = null.
+
+4) COMPOUND TENSES RULES:
+   - Always split auxiliary and participle:
+     - auxStem / auxEnding represent the auxiliary's correct form split per the same "irregular" logic (if auxiliary is fused irregular, place full form in auxStem and auxEnding = null).
+     - correctStem / correctEnding represent the past participle split if you choose (recommended: participle stem + participle ending). If you prefer to keep participle as whole, put whole participle in correctStem and correctEnding = null.
+   - requiresAgreement is NOT a schema field here — instead, reflect agreement by placing participle with appropriate gender/number when necessary (see Rule 6).
+
+5) PAST PARTICIPLE AGREEMENT (gender/number):
+   - Because this dataset excludes reflexive verbs, apply agreement rules only for compound tenses that use "être" as auxiliary.
+   - For verbs whose compound forms use "être", the past participle must reflect subject gender & number:
+     - il -> participle base (e.g., "allé")
+     - elle -> add "e" if applicable (e.g., "allée")
+     - ils -> add "s" if applicable (e.g., "allés")
+     - elles -> add "es" if applicable (e.g., "allées")
+   - For compound tenses using "avoir", participle does NOT change to agree with subject (do not add endings for subject agreement in these cases).
+
+6) DISTRACTORS (MANDATORY)
+   - distractorStems: MUST be an array of **3** strings: plausible incorrect stems that could reasonably be selected by a learner.
+   - distractorEndings: MUST be an array of **3** strings OR null if endings are not applicable. For irregular fused forms (correctEnding = null), set distractorEndings = null.
+   - For compound tenses, also provide distractorAuxStems (3 strings) and distractorAuxEndings (3 strings) where applicable; if auxEnding not applicable, set corresponding distractorAuxEndings = null.
+   - Important constraints for distractors:
+     a) **None** of the distractor items (stems/endings/aux) may equal the correctStem / correctEnding / auxStem / auxEnding; duplicates are forbidden.
+     b) Distractors must be plausible: common error patterns include wrong tense stem, wrong auxiliary form, wrong person ending, omission or erroneous insertion of typical suffixes, or confusion with other verbs' stems.
+     c) Avoid nonsensical strings; all distractors must look like possible French morphemes.
+   - Example guidance (not to be output): for "parler, présent, tu": correctStem="parl", correctEnding="es", distractorStems could be ["parlER","par","parliss"] and distractorEndings ["e","ons","ez"] provided none equals correctEnding.
+
+7) ruleSummary (required)
+   - 1–2 concise sentences summarizing:
+     - tense type (simple/compound), auxiliary chosen (avoir/être) if compound, whether the verb is regular or irregular, and whether participle agrees with subject.
+   - Example: "Compound tense using être; past participle agrees with subject gender/number."
+
+8) explanations (required: en, zh, ja, fr)
+   - Provide 2–4 instructive sentences in each language explaining:
+     - how the tense is formed for this person (stem+ending OR auxiliary + participle),
+     - whether the verb is regular or irregular,
+     - auxiliary selection and agreement rules if compound,
+     - mention J'/Qu' elision or "Que" prefix if applicable.
+
+9) FORMATTING AND OUTPUT:
+   - Output exactly one JSON object matching BATCH_SCHEMA containing:
+     - infinitive (the verb),
+     - translations (en, zh, ja),
+     - puzzles array length EXACTLY 80 (ordered by tense then person is acceptable but not mandatory).
+   - Do NOT include any extra fields beyond the PUZZLE_SCHEMA fields listed.
+   - Do NOT output any explanatory text outside the JSON.
+   - Ensure no duplicate puzzles and ensure distractor arrays contain unique entries.
+';
