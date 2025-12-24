@@ -1,14 +1,14 @@
 import React from 'react';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import App from '../App';
 import { LanguageProvider } from '../LanguageContext';
 import * as SupabaseService from '../services/supabase';
-import { mockPuzzleData } from './mocks/data';
+import { mockPuzzleData, mockCompoundPuzzleData } from './mocks/data';
 
 // Mock the DB fetch function
 vi.mock('../services/supabase', async (importOriginal) => {
-  const actual = await importOriginal<typeof SupabaseService>();
+  const actual = await importOriginal() as typeof SupabaseService;
   return {
     ...actual,
     fetchRandomPuzzleFromDB: vi.fn(),
@@ -34,7 +34,7 @@ describe('App Integration', () => {
     expect(screen.getByText(/Loading/i)).toBeInTheDocument();
   });
 
-  it('renders the game board after data loads', async () => {
+  it('renders the game board with Simple Tense data', async () => {
     (SupabaseService.fetchRandomPuzzleFromDB as any).mockResolvedValue(mockPuzzleData);
     
     renderApp();
@@ -44,20 +44,46 @@ describe('App Integration', () => {
         expect(screen.getByText('parler')).toBeInTheDocument();
     });
 
-    expect(screen.getByText('parl')).toBeInTheDocument();
-    expect(screen.getByText('e')).toBeInTheDocument();
-    expect(screen.getByText('es')).toBeInTheDocument();
+    // Check availability of pieces (using regex to avoid partial match issues if split)
+    // The TrayGroup renders async, so we wait
+    await waitFor(() => {
+        expect(screen.getByText('parl')).toBeInTheDocument();
+        expect(screen.getByText('e')).toBeInTheDocument();
+        expect(screen.getByText('es')).toBeInTheDocument();
+    });
+  });
+
+  it('renders the game board with Compound Tense data (Auxiliary)', async () => {
+    (SupabaseService.fetchRandomPuzzleFromDB as any).mockResolvedValue(mockCompoundPuzzleData);
+    
+    renderApp();
+
+    await waitFor(() => {
+        expect(screen.getByText("Je")).toBeInTheDocument();
+        expect(screen.getByText('manger')).toBeInTheDocument();
+    });
+
+    // Should see Auxiliary pieces
+    // Note: TrayGroup uses ResizeObserver which adds an async delay to rendering.
+    // We increase timeout to prevent flakiness in CI/Test environments.
+    await waitFor(() => {
+        expect(screen.getByText('a')).toBeInTheDocument(); // Aux stem
+        expect(screen.getByText('mang')).toBeInTheDocument(); // Participle stem
+    }, { timeout: 3000 });
   });
 
   it('allows selecting a piece and validates incorrectly', async () => {
     (SupabaseService.fetchRandomPuzzleFromDB as any).mockResolvedValue(mockPuzzleData);
     renderApp();
 
+    // Wait for trays
     await waitFor(() => screen.getByText('parl'));
 
+    // Select wrong ending
     const wrongEnding = screen.getByRole('button', { name: 'es' });
     fireEvent.click(wrongEnding);
 
+    // Select correct stem
     const correctStem = screen.getByRole('button', { name: 'parl' });
     fireEvent.click(correctStem);
 
@@ -67,7 +93,8 @@ describe('App Integration', () => {
     fireEvent.click(checkBtn);
 
     await waitFor(() => {
-        expect(screen.getByText(/Try again/i)).toBeInTheDocument(); 
+        // "Try again" depends on locale, using loose match
+        expect(screen.getByText(/Try again|Encore/i)).toBeInTheDocument(); 
     });
   });
 
@@ -77,6 +104,7 @@ describe('App Integration', () => {
 
     await waitFor(() => screen.getByText('parl'));
 
+    // Correct sequence
     fireEvent.click(screen.getByRole('button', { name: 'parl' }));
     fireEvent.click(screen.getByRole('button', { name: 'e' }));
 
@@ -86,6 +114,10 @@ describe('App Integration', () => {
         expect(screen.getByText(/Correct/i)).toBeInTheDocument();
     });
 
+    // Explanation should appear
+    expect(screen.getByText('Test Explanation')).toBeInTheDocument();
+
+    // "Next" button appears
     expect(screen.getByText(/Next/i)).toBeInTheDocument();
   });
 });

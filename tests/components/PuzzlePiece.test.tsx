@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { PuzzlePiece } from '../../components/PuzzlePiece';
 
 describe('PuzzlePiece', () => {
-  // Define the spy separately so we can reference it for clearing
   const onClickMock = vi.fn();
 
   const defaultProps = {
@@ -14,7 +13,6 @@ describe('PuzzlePiece', () => {
     onClick: onClickMock,
   };
 
-  // Clear the mock history before every single test
   beforeEach(() => {
     onClickMock.mockClear();
   });
@@ -40,7 +38,6 @@ describe('PuzzlePiece', () => {
   it('does not fire click when disabled', () => {
     render(<PuzzlePiece {...defaultProps} disabled={true} />);
     fireEvent.click(screen.getByRole('button'));
-    // Now this will pass because the count was reset to 0 before this test ran
     expect(onClickMock).not.toHaveBeenCalled();
   });
 
@@ -48,5 +45,14 @@ describe('PuzzlePiece', () => {
       render(<PuzzlePiece {...defaultProps} type="aux-stem" />);
       const button = screen.getByRole('button');
       expect(button.className).toContain('bg-amber-50'); 
+  });
+
+  it('respects fixedWidth prop when provided', () => {
+      const width = 150;
+      render(<PuzzlePiece {...defaultProps} fixedWidth={width} />);
+      const button = screen.getByRole('button');
+      // React sets styles as inline styles
+      expect(button).toHaveStyle({ width: `${width}px` });
+      expect(button).toHaveStyle({ minWidth: `${width}px` });
   });
 });

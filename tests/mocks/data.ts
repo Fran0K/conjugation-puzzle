@@ -20,3 +20,27 @@ export const mockPuzzleData: PuzzleData = {
   ruleSummary: 'Rule Summary'
 };
 
+export const mockCompoundPuzzleData: PuzzleData = {
+  id: 'test-compound-1',
+  verb: 'manger',
+  tense: 'Passé Composé',
+  person: 'Je',
+  pronoun: "J'",
+  translation: 'to have eaten',
+  is_regular: true,
+  
+  // Auxiliary (J'ai)
+  auxStem: 'a',
+  auxEnding: 'i', // Often empty for simple auxiliaries, but testing structure
+  auxDistractorStems: ['su'],
+  auxDistractorEndings: ['is'],
+
+  // Participle (mangé)
+  correctStem: 'mang',
+  correctEnding: 'é',
+  distractorStems: ['parl'],
+  distractorEndings: ['er', 'ez'],
+  
+  explanation: 'Compound Explanation',
+  ruleSummary: 'Aux + PP'
+};

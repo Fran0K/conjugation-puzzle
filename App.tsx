@@ -263,6 +263,15 @@ const App: React.FC = () => {
     return trays;
   }, [hasVerbStem, hasVerbEnd, availableStems, availableEndings, selectedStem, selectedEnding, showVerbConnectors, t]);
 
+  // Combine trays for the layout engine
+  const allTrays = [...auxTrays, ...verbTrays];
+
+  // Mobile DropZone Layout Strategy:
+  // If we have few trays (<= 2), we can fit them side-by-side even on mobile.
+  // This avoids taking up too much vertical space for simple compound tenses (e.g., Aux + PastParticiple).
+  // For complex cases (3 or 4 trays), we keep the stacked layout on mobile.
+  const isCompactDropZone = allTrays.length <= 2;
+
   const tutorialSteps: TutorialStep[] = [
     { targetRef: objectiveRef, titleKey: 'tour_obj_title', descKey: 'tour_obj_desc', position: 'bottom' },
     { targetRef: trayRef, titleKey: 'tour_tray_title', descKey: 'tour_tray_desc', position: 'top' },
@@ -338,9 +347,9 @@ const App: React.FC = () => {
       <main className="max-w-4xl mx-auto px-4 sm:px-4 py-4 sm:py-8 flex flex-col items-center">
         
         {gameState === GameState.LOADING && (
-          <div className="w-full flex flex-col items-center gap-8 animate-pulse mt-10">
-            <div className={`h-8 w-64 ${SHIMMER_CLASS}`}></div>
+          <div className="w-full flex flex-col items-center gap-4 animate-pulse mt-10">
             <div className={`h-24 w-full max-w-md ${SHIMMER_CLASS}`}></div>
+            <div className={`h-16 w-full max-w-md ${SHIMMER_CLASS}`}></div>
             <div className={`h-32 w-full ${SHIMMER_CLASS}`}></div>
             <div className="mt-4 text-gray-400 text-sm font-medium">{t('loading')}</div>
           </div>
@@ -405,7 +414,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Drop Zones */}
-            <div ref={dropZoneRef} className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-10 w-full transition-all duration-300">
+            <div ref={dropZoneRef} className={`flex ${isCompactDropZone ? 'flex-row' : 'flex-col'} sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-10 w-full transition-all duration-300`}>
               {isCompound && (
                 <div className="flex items-center justify-center bg-amber-50 p-1 sm:p-1.5 rounded-2xl shadow-sm border border-amber-100">
                   <DropZone 
@@ -432,7 +441,7 @@ const App: React.FC = () => {
               )}
 
               {isCompound && (
-                 <Plus className="text-gray-300 w-4 h-4 sm:w-5 sm:h-5 rotate-90 sm:rotate-0" />
+                 <Plus className={`text-gray-300 w-4 h-4 sm:w-5 sm:h-5 ${isCompactDropZone ? 'rotate-0' : 'rotate-90'} sm:rotate-0 transition-transform`} />
               )}
 
               <div className="flex items-center justify-center bg-blue-50 p-1 sm:p-1.5 rounded-2xl shadow-sm border border-blue-100">
@@ -463,25 +472,12 @@ const App: React.FC = () => {
             {/* --- SMART TRAY ZONE (MOBILE OPTIMIZED v3) --- */}
             {/* 
               Layout Strategy:
-              - Aux Zone Top
-              - Verb Zone Bottom
-              - TrayGroup handles internal layout (1 row vs 2x2 vs 1 col vertical)
+              - We now pass ALL trays (Aux + Verb) to a single TrayGroup.
+              - This allows the TrayGroup to see the *total count* and apply the Matrix rules.
             */}
             <div className="w-full max-w-5xl mt-0" ref={trayRef}>
-              {gameState !== GameState.SUCCESS && (
-                <div className="w-full flex flex-col gap-4">
-                  
-                  {/* --- AUXILIARY GROUP --- */}
-                  {auxTrays.length > 0 && (
-                     <TrayGroup trays={auxTrays} />
-                  )}
-
-                  {/* --- VERB GROUP --- */}
-                  {verbTrays.length > 0 && (
-                     <TrayGroup trays={verbTrays} />
-                  )}
-
-                </div>
+              {gameState !== GameState.SUCCESS && allTrays.length > 0 && (
+                <TrayGroup trays={allTrays} />
               )}
             </div>
 

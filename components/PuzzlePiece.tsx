@@ -82,7 +82,7 @@ export const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
   // padding is handled by the layout engine calculation + base styles
   if (isStem) {
     if (showConnectors) {
-      shapeClass = "rounded-l-lg rounded-r-none pr-3 pl-2 py-2 sm:pr-6 sm:pl-4 sm:py-4";
+      shapeClass = "rounded-l-lg rounded-r-none pr-2 pl-1 py-2 sm:pr-6 sm:pl-4 sm:py-4";
     } else {
       shapeClass = "rounded-xl px-1 py-2 sm:px-6 sm:py-4"; 
     }

@@ -18,7 +18,7 @@ export const SmartTray: React.FC<SmartTrayProps> = ({ config, layout }) => {
 
   return (
     <div 
-      className={`bg-white p-2 sm:p-4 rounded-xl border ${borderColor} shadow-sm flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 transition-all h-full`}
+      className={`bg-white p-2 sm:p-4 rounded-xl border ${borderColor} shadow-sm flex flex-col items-center animate-in fade-in slide-in-from-bottom-4 duration-500 transition-all`}
       style={{
          // If layout is vertical (cols=1), fit content. If grid (cols=2), fit content but respect parent flex.
          // If horizontal strip (cols=4), width is based on content.
