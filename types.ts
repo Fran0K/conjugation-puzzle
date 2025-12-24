@@ -51,6 +51,24 @@ export interface GrammarRule {
 // Extended slot types for precise drag and drop validation
 export type SlotType = 'stem' | 'ending' | 'aux-stem' | 'aux-ending';
 
+// --- UI / Layout Types ---
+
+export interface TrayConfig {
+  id: string;
+  items: string[];
+  type: SlotType;
+  selected: string | null;
+  onSelect: (item: string) => void;
+  title: string;
+  color: 'amber' | 'blue' | 'red';
+  showConnectors?: boolean;
+}
+
+export interface TrayLayoutState {
+  cols: number; // 1, 2, or 4
+  pieceWidth: number;
+}
+
 // --- Database Types (Supabase) ---
 
 export interface DatabaseVerb {
