@@ -80,14 +80,16 @@ export const PuzzlePiece: React.FC<PuzzlePieceProps> = ({
 
   // Connectors visuals are purely decorative overlays now, 
   // padding is handled by the layout engine calculation + base styles
+
+  // ajust the puzzle height
   if (isStem) {
     if (showConnectors) {
-      shapeClass = "rounded-l-lg rounded-r-none pr-2 pl-1 py-2 sm:pr-6 sm:pl-4 sm:py-4";
+      shapeClass = "rounded-l-lg rounded-r-none pr-2 pl-1 py-2 sm:pr-5 sm:pl-3 sm:py-3";
     } else {
-      shapeClass = "rounded-xl px-1 py-2 sm:px-6 sm:py-4"; 
+      shapeClass = "rounded-xl px-1 py-2 sm:px-4 sm:py-3"; 
     }
   } else {
-    shapeClass = "rounded-r-lg rounded-l-none pl-3 pr-2 py-2 sm:pl-6 sm:pr-4 sm:py-4";
+    shapeClass = "rounded-r-lg rounded-l-none pl-2 pr-2 py-2 sm:pl-4 sm:pr-4 sm:py-3";
   }
 
   const handleDragStart = (e: React.DragEvent) => {

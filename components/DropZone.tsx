@@ -109,7 +109,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
 
   // Determine if notch should be shown
   const showNotch = position === 'left' || (!position && isStem);
-
+  // ajust the drop zone height
   return (
     <div 
       onClick={content && isCorrect === null ? onClear : undefined}
@@ -118,7 +118,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={`
-        relative h-14 sm:h-24 min-w-[80px] sm:min-w-[140px] flex items-center justify-center 
+        relative h-12 sm:h-20 min-w-[80px] sm:min-w-[140px] flex items-center justify-center 
         border-2 ${borderColor} ${bgColor} ${shapeClass}
         transition-all duration-300
         ${content && isCorrect === null ? 'cursor-pointer hover:opacity-80 group' : ''}

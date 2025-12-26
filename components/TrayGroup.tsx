@@ -38,8 +38,8 @@ export const TrayGroup: React.FC<TrayGroupProps> = ({ trays }) => {
     const font = `700 ${fontSize} "Fredoka", sans-serif`;
     
     // Padding + Buffer + Connector space (Must match PuzzlePiece styling)
-    const padding = isDesktop ? 56 : 28; 
-    const minWidth = isDesktop ? 100 : 55;
+    const padding = isDesktop ? 80 : 28; 
+    const minWidth = isDesktop ? 120 : 55;
     
     // GAP CONFIGURATION (Must match CSS)
     // Mobile: gap-3 (12px)
