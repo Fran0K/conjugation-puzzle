@@ -24,7 +24,7 @@ export const GrammarModal: React.FC<GrammarModalProps> = ({ isOpen, onClose }) =
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-[calc(env(safe-area-inset-top)+16px)] bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
         <div className="px-4 py-3 md:px-6 md:py-4 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-10 rounded-t-2xl">
-          <h2 className="text-2xl font-display font-bold text-french-dark">
+          <h2 className="text-xl font-display font-bold text-french-dark">
             {t('rules')}
           </h2>
           <button 

@@ -58,6 +58,7 @@ const App: React.FC = () => {
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const trayRef = useRef<HTMLDivElement>(null);
   const grammarRef = useRef<HTMLButtonElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   // Available pieces
   const [availableStems, setAvailableStems] = useState<string[]>([]);
@@ -274,17 +275,16 @@ const App: React.FC = () => {
 
   const tutorialSteps: TutorialStep[] = [
     { targetRef: objectiveRef, titleKey: 'tour_obj_title', descKey: 'tour_obj_desc', position: 'bottom' },
-    { targetRef: trayRef, titleKey: 'tour_tray_title', descKey: 'tour_tray_desc', position: 'top' },
     { targetRef: dropZoneRef, titleKey: 'tour_zone_title', descKey: 'tour_zone_desc', position: 'bottom' },
+    { targetRef: trayRef, titleKey: 'tour_tray_title', descKey: 'tour_tray_desc', position: 'top' },
+    { targetRef: footerRef, titleKey: 'tour_footer_title', descKey: 'tour_footer_desc', position: 'top' },
+    { targetRef: langBtnRef, titleKey: 'tour_lang_title', descKey: 'tour_lang_desc', position: 'bottom' },
     { targetRef: settingsBtnRef, titleKey: 'tour_settings_title', descKey: 'tour_settings_desc', position: 'bottom' },
     { targetRef: grammarRef, titleKey: 'tour_grammar_title', descKey: 'tour_grammar_desc', position: 'bottom' },
-    { targetRef: langBtnRef, titleKey: 'tour_lang_title', descKey: 'tour_lang_desc', position: 'bottom' },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-french-blue selection:text-white pb-10">
-     
-    {/* <div className="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-french-blue selection:text-white pb-32 sm:pb-20"> */}
+    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-french-blue selection:text-white pb-32 sm:pb-20">
       
       {isLangMenuOpen && (
         <div className="fixed inset-0 z-20 cursor-default" onClick={() => setIsLangMenuOpen(false)} />
@@ -489,7 +489,7 @@ const App: React.FC = () => {
               - We now pass ALL trays (Aux + Verb) to a single TrayGroup.
               - This allows the TrayGroup to see the *total count* and apply the Matrix rules.
             */}
-            <div className="w-full max-w-5xl mt-0" ref={trayRef}>
+            <div className="w-full max-w-5xl mt-0 mb-6 sm:mb-10" ref={trayRef}>
               {gameState !== GameState.SUCCESS && allTrays.length > 0 && (
                 <TrayGroup trays={allTrays} />
               )}
@@ -532,8 +532,8 @@ const App: React.FC = () => {
             )}
             
             {/* Footer - UPDATED BUTTONS STYLE */}
-            <div className="w-full flex flex-col items-center justify-center mt-6 sm:mt-10 z-30">
-              <div className="flex gap-3 sm:gap-4 w-full justify-center max-w-4xl mx-auto">
+            <div className="fixed bottom-0 left-0 right-0 px-4 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-none z-40 flex flex-col items-center justify-center sm:static sm:bg-transparent sm:border-0 sm:backdrop-blur-none">
+              <div ref={footerRef} className="flex gap-3 sm:gap-4 w-full justify-center max-w-4xl mx-auto">
                   {gameState === GameState.SUCCESS ? (
                      <button 
                      onClick={loadNewPuzzle}
@@ -560,9 +560,8 @@ const App: React.FC = () => {
                           : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed opacity-60'
                         }`}
                       >
-                        <span>{t('check')}</span>
                         <Search className="w-5 h-5" />
-                        
+                        <span>{t('check')}</span>
                       </button>
                     </>
                   )}

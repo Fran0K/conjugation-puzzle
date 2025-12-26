@@ -37,7 +37,7 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ isOpen, steps,
       setTimeout(() => {
          const rect = element.getBoundingClientRect();
          setTargetRect(rect);
-      }, 450);
+      }, 100);
     }
   }, [step]);
 
