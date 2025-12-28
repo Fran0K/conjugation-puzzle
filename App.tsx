@@ -294,9 +294,6 @@ const App: React.FC = () => {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-4xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {/* <div className="w-8 h-8 bg-french-blue rounded-lg flex items-center justify-center text-white shadow-sm">
-              <PuzzleIcon className="w-5 h-5" />
-            </div> */}
             <div className="flex items-center">
               <img 
                 src="/img/logo_desk.png" 
@@ -309,9 +306,9 @@ const App: React.FC = () => {
                 className="block sm:hidden h-8 w-auto object-contain" 
               />
           </div>
-            {/* <h1 className="text-xl font-display font-bold text-french-dark hidden sm:block">
+            <h1 className="text-xl font-display font-bold text-french-dark hidden sm:block">
               {t('title')}
-            </h1> */}
+            </h1>
         </div>
           
           <div className="flex items-center gap-2 sm:gap-3">
@@ -497,14 +494,14 @@ const App: React.FC = () => {
 
             {/* Error Feedback */}
             {gameState !== GameState.SUCCESS && feedback && (
-               <div className="mt-6 p-3 rounded-xl border-2 text-center bg-red-50 border-red-200 animate-in zoom-in-95">
+               <div className="mb-6 p-3 rounded-xl border-2 text-center bg-red-50 border-red-200 animate-in zoom-in-95">
                  <h3 className="text-lg font-bold text-red-700">{feedback}</h3>
                </div>
             )}
 
             {/* Success Feedback */}
             {gameState === GameState.SUCCESS && feedback && (
-              <div className="w-full max-w-lg mt-0 px-1">
+              <div className="w-full max-w-lg mt-0 pb-2 px-1">
                 <div className="p-4 sm:p-6 rounded-3xl border-2 text-center animate-in zoom-in-95 duration-300 bg-green-50 border-green-200">
                   <h3 className="text-xl sm:text-2xl font-display font-bold mb-2 text-green-700">
                     {feedback}
