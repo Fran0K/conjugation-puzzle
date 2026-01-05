@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import { SlotType } from '../types';
+import { useLanguage } from '../LanguageContext';
+
 
 interface DropZoneProps {
   type: SlotType;
@@ -21,6 +23,8 @@ export const DropZone: React.FC<DropZoneProps> = ({
   onDrop,
   position 
 }) => {
+
+  const { t } = useLanguage();
   const [isOver, setIsOver] = useState(false);
   
   const isStem = type.includes('stem');
@@ -151,7 +155,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
         ? 'bg-amber-50 text-amber-500 border-amber-100' 
         : 'bg-blue-50 text-blue-400 border-blue-100'
       }`}>
-        {isAux ? (isStem ? "Aux" : "Aux") : (isStem ? "Verb" : "Verb")}
+        {isAux ? t('lbl_aux') : t('lbl_verb')}
       </span>
       
       {/* Hover to remove indicator (only if filled, not validated, and not dragging) */}

@@ -85,7 +85,14 @@ export const TRANSLATIONS = {
       onboarding_action_title: "Votre Mission",
       onboarding_action_desc: "Glissez les pièces du plateau vers les zones vides pour former le verbe conjugué.",
       start_game: "Commencer",
-      restart_tutorial: "Relancer le tutoriel"
+      restart_tutorial: "Relancer le tutoriel",
+      // Zone Labels
+      lbl_aux: "Aux",
+      lbl_verb: "Verb",
+      lbl_aux_stem: "Aux · Base",
+      lbl_aux_ending: "Aux · Fin",
+      lbl_verb_stem: "Verbe · Base",
+      lbl_verb_ending: "Verbe · Fin"
     },
     tenses: {
       "Présent": "Présent",
@@ -393,7 +400,15 @@ export const TRANSLATIONS = {
       onboarding_action_title: "Your Mission",
       onboarding_action_desc: "Drag or Click pieces from the tray to the empty slots to build the conjugated verb.",
       start_game: "Start Game",
-      restart_tutorial: "Restart Tutorial"
+      restart_tutorial: "Restart Tutorial",
+
+      // Zone Labels
+      lbl_aux: "Aux",
+      lbl_verb: "Verb",
+      lbl_aux_stem: "Aux · Base",
+      lbl_aux_ending: "Aux · Fin",
+      lbl_verb_stem: "Verb · Base",
+      lbl_verb_ending: "Verb · Fin"
     },
     tenses: {
       "Présent": "Present",
@@ -651,10 +666,10 @@ export const TRANSLATIONS = {
       about: "关于",
       objective: "目标",
       hint: "提示",
-      stem_zone: "Base",
-      ending_zone: "Fin",
-      stems_tray: "Base",
-      endings_tray: "Fin",
+      stem_zone: "词根",
+      ending_zone: "词尾",
+      stems_tray: "词根",
+      endings_tray: "词尾",
       check: "检查",
       skip: "跳过",
       next: "下一题",
@@ -712,7 +727,15 @@ export const TRANSLATIONS = {
       onboarding_action_title: "你的任务",
       onboarding_action_desc: "将碎片拖入空槽，拼出正确的动词变位形式。",
       start_game: "开始游戏",
-      restart_tutorial: "重看教程"
+      restart_tutorial: "重看教程",
+      // Zone Labels
+      lbl_aux: "助动词",
+      lbl_verb: "动词",
+      lbl_aux_stem: "助动词 · 词根",
+      lbl_aux_ending: "助动词 · 词尾",
+      lbl_verb_stem: "动词 · 词根",
+      lbl_verb_ending: "动词 · 词尾",
+      
     },
     tenses: {
       "Présent": "直陈式现在时",
@@ -969,10 +992,10 @@ export const TRANSLATIONS = {
       about: "概要",
       objective: "目標",
       hint: "ヒント",
-      stem_zone: "Base",
-      ending_zone: "Fin",
-      stems_tray: "Base",
-      endings_tray: "Fin",
+      stem_zone: "語幹",
+      ending_zone: "語尾",
+      stems_tray: "語幹",
+      endings_tray: "語尾",
       check: "判定",
       skip: "パス",
       next: "次へ",
@@ -1030,7 +1053,14 @@ export const TRANSLATIONS = {
       onboarding_action_title: "ミッション",
       onboarding_action_desc: "ピースを空のスロットにドラッグして、活用形を完成させましょう。",
       start_game: "ゲームスタート",
-      restart_tutorial: "チュートリアルを再開"
+      restart_tutorial: "チュートリアルを再開",
+      // Zone Labels
+      lbl_aux: "助動詞",
+      lbl_verb: "動詞",
+      lbl_aux_stem: "助動詞 · 語幹",
+      lbl_aux_ending: "助動詞 · 語尾",
+      lbl_verb_stem: "動詞 · 語幹",
+      lbl_verb_ending: "動詞 · 語尾"
     },
     tenses: {
       "Présent": "現在形",

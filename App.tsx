@@ -217,7 +217,7 @@ const App: React.FC = () => {
         type: 'aux-stem' as SlotType,
         selected: selectedAuxStem,
         onSelect: (item: string) => { setSelectedAuxStem(prev => prev === item ? null : item); clearFeedback(); },
-        title: `Aux · ${t('stems_tray')}`,
+        title: hasAuxEnd ? t('lbl_aux_stem') : t('lbl_aux'),
         color: 'amber' as const,
         showConnectors: showAuxConnectors
       });
@@ -229,7 +229,7 @@ const App: React.FC = () => {
         type: 'aux-ending' as SlotType,
         selected: selectedAuxEnding,
         onSelect: (item: string) => { setSelectedAuxEnding(prev => prev === item ? null : item); clearFeedback(); },
-        title: `Aux · ${t('endings_tray')}`,
+        title: t('lbl_aux_ending'),
         color: 'amber' as const
       });
     }
@@ -245,7 +245,7 @@ const App: React.FC = () => {
         type: 'stem' as SlotType,
         selected: selectedStem,
         onSelect: (item: string) => { setSelectedStem(prev => prev === item ? null : item); clearFeedback(); },
-        title: `Verb · ${t('stems_tray')}`,
+        title: hasVerbEnd ? t('lbl_verb_stem') : t('lbl_verb'),
         color: 'blue' as const,
         showConnectors: showVerbConnectors
       });
@@ -257,7 +257,7 @@ const App: React.FC = () => {
         type: 'ending' as SlotType,
         selected: selectedEnding,
         onSelect: (item: string) => { setSelectedEnding(prev => prev === item ? null : item); clearFeedback(); },
-        title: `Verb · ${t('endings_tray')}`,
+        title: t('lbl_verb_ending'),
         color: 'blue' as const
       });
     }
@@ -385,11 +385,8 @@ const App: React.FC = () => {
             <div className="w-full text-center mb-6 sm:mb-10 px-1">
               <div className="relative inline-block w-full max-w-lg" ref={objectiveRef}>
                 <div className="bg-white px-4 py-5 sm:px-12 sm:py-6 rounded-3xl shadow-lg shadow-blue-100/50 border border-blue-50 relative overflow-hidden transition-all duration-300">
-                  <span className="block text-[10px] sm:text-xs text-gray-400 font-bold tracking-[0.2em] uppercase mb-2">
-                    {t('objective')}
-                  </span>
-                  <div className="text-3xl sm:text-5xl font-display font-black text-french-dark tracking-tight">
-                    <span className="text-french-blue">{puzzle.person}</span> 
+                  <div className="text-3xl sm:text-5xl font-display font-black text-french-dark tracking-tight pb-2">
+                    <span className="text-french-blue italic">{puzzle.person}</span> 
                     <span className="mx-2 sm:mx-3 text-gray-300">·</span>
                     <span className="relative inline-block">
                         <span className="relative z-10 text-french-red">{puzzle.verb}</span>
