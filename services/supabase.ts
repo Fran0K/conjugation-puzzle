@@ -4,8 +4,8 @@ import { DatabasePuzzle, PuzzleData } from '../types';
 
 // Use Vite environment variables
 // Cast import.meta to any to avoid TypeScript errors if types are missing
-const supabaseUrl = "https://ojpxifdqrehlzodcamhr.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qcHhpZmRxcmVobHpvZGNhbWhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyOTA5NDcsImV4cCI6MjA4MDg2Njk0N30.LATtUWNJgTkL-9tVRp0n2GmpbilFNDH0ziVcS2oZetY"
+const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL;
+const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("Supabase credentials missing! Please check your .env file.");

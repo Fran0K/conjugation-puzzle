@@ -9,9 +9,10 @@ import { SettingsModal } from './components/SettingsModal';
 import { AboutModal } from './components/AboutModal';
 import { TutorialOverlay, TutorialStep } from './components/TutorialOverlay';
 import { ALL_TENSES, SHIMMER_CLASS } from './constants';
-import { BookOpen, RefreshCw, ArrowRight, Database, Settings, Lightbulb, ChevronDown, Info, Plus, Search } from 'lucide-react';
+import { BookOpen, RefreshCw, ArrowRight, Database, Settings, Lightbulb, ChevronDown, Info, Plus, Search, Trophy } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { Language } from './locales';
+import { Confetti } from './components/Confetti';
 import { cleanAndShuffle } from './utils';
 
 // --- APP ---
@@ -41,6 +42,10 @@ const App: React.FC = () => {
   const puzzleQueue = useRef<PuzzleData[]>([]);
   const isFetchingRef = useRef(false); // Semaphore to prevent double fetching
 
+  const [successCount, setSuccessCount] = useState(0);
+  const [confettiTrigger, setConfettiTrigger] = useState(0);
+  
+  
   // Settings State
   const [showSettings, setShowSettings] = useState(false);
   const [selectedTenses, setSelectedTenses] = useState<string[]>(() => {
@@ -203,6 +208,7 @@ const App: React.FC = () => {
 
     if (isStemCorrect && isEndingCorrect && isAuxCorrect) {
       setGameState(GameState.SUCCESS);
+      setSuccessCount(prev => prev + 1);
       setFeedback(t('correct'));
     } else {
       setFeedback(t('wrong'));
@@ -253,6 +259,8 @@ const App: React.FC = () => {
   const currentLangObj = LANGUAGES.find(l => l.code === language) || LANGUAGES[0];
   const showAuxConnectors = puzzle ? (puzzle.auxEnding !== null) : false;
   const showVerbConnectors = puzzle ? (puzzle.correctEnding !== null) : false;
+
+  const isMilestone = gameState === GameState.SUCCESS && successCount > 0 && successCount % 5 === 0;
 
   const hasAuxStem = availableAuxStems.length > 0;
   const hasAuxEnd = availableAuxEndings.length > 0;
@@ -338,6 +346,9 @@ const App: React.FC = () => {
       {isLangMenuOpen && (
         <div className="fixed inset-0 z-20 cursor-default" onClick={() => setIsLangMenuOpen(false)} />
       )}
+
+      {/* Confetti Effect */}
+      {isMilestone && <Confetti key={confettiTrigger} />}
 
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
@@ -527,7 +538,7 @@ const App: React.FC = () => {
             </div>
 
             {/* --- SMART TRAY ZONE --- */}
-            <div className="w-full max-w-5xl mt-0 mb-6 sm:mb-10" ref={trayRef}>
+            <div className={`w-full max-w-5xl mt-0 ${gameState === GameState.SUCCESS ? 'mb-0' : 'mb-6 sm:mb-10'}`} ref={trayRef}>
               {gameState !== GameState.SUCCESS && allTrays.length > 0 && (
                 <TrayGroup trays={allTrays} />
               )}
@@ -535,14 +546,29 @@ const App: React.FC = () => {
 
             {/* Error Feedback */}
             {gameState !== GameState.SUCCESS && feedback && (
-               <div className="mb-6 p-3 rounded-xl border-2 text-center bg-red-50 border-red-200 animate-in zoom-in-95">
+               <div className="w-full max-w-lg mb-6 p-3 rounded-xl border-2 text-center bg-red-50 border-red-200 animate-in zoom-in-95">
                  <h3 className="text-lg font-bold text-red-700">{feedback}</h3>
                </div>
             )}
 
             {/* Success Feedback */}
             {gameState === GameState.SUCCESS && feedback && (
-              <div className="w-full max-w-lg mt-0 pb-2 px-1">
+              <div className="w-full max-w-lg mt-0 mb-6 pb-2 px-1 relative">
+
+                {/* Milestone Message */}
+                {isMilestone && (
+                  <div className="mb-4 animate-in bounce-in duration-700 w-full">
+                    <div 
+                      onClick={() => setConfettiTrigger(t => t + 1)}
+                      className="w-full bg-orange-500 text-white px-6 py-3 rounded-xl font-display text-lg flex items-center justify-center gap-2 transform transition-transform cursor-pointer active:scale-95 select-none shadow-ld"
+                    >
+                      <Trophy className="w-6 h-6 text-yellow-100" fill="currentColor" />
+                      {/* @ts-ignore */}
+                      {t('milestone').replace('{n}', successCount)}
+                    </div>
+                  </div>
+                )}
+
                 <div className="p-4 sm:p-6 rounded-3xl border-2 text-center animate-in zoom-in-95 duration-300 bg-green-50 border-green-200">
                   <h3 className="text-xl sm:text-2xl font-display font-bold mb-2 text-green-700">
                     {feedback}
@@ -570,12 +596,12 @@ const App: React.FC = () => {
             )}
             
             {/* Footer - ACTIONS */}
-            <div className="fixed bottom-0 left-0 right-0 px-4 py-3 md:py-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-none z-40 flex flex-col items-center justify-center sm:static sm:bg-transparent sm:border-0 sm:backdrop-blur-none">
-              <div ref={footerRef} className="flex gap-3 sm:gap-4 w-full justify-center max-w-4xl mx-auto">
+            <div className="fixed bottom-0 left-0 right-0 px-4 py-3 md:py-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-none z-40 flex flex-col items-center justify-center sm:static sm:bg-transparent sm:border-0 sm:backdrop-blur-none w-full">
+              <div ref={footerRef} className="flex gap-3 sm:gap-4 w-full justify-center max-w-lg mx-auto px-1">
                   {gameState === GameState.SUCCESS ? (
                      <button 
                      onClick={loadNewPuzzle}
-                     className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-french-dark text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold border-2 border-gray-900 shadow-sm hover:bg-gray-800 transition-all active:scale-95 ring-4 ring-gray-100"
+                     className="w-full flex items-center justify-center gap-2 bg-french-dark text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl font-bold border-2 border-gray-900 shadow-sm hover:bg-gray-800 transition-all active:scale-95 ring-4 ring-gray-100"
                    >
                      <span>{t('next')}</span>
                      <ArrowRight className="w-5 h-5" />
@@ -584,7 +610,7 @@ const App: React.FC = () => {
                     <>
                        <button 
                         onClick={handleSkip}
-                        className="flex-1 sm:flex-none flex items-center justify-center gap-2 text-gray-600 px-4 py-3 sm:px-6 rounded-xl font-bold transition-all border-2 border-gray-200 bg-white hover:bg-gray-50 shadow-sm active:scale-95"
+                        className="flex-1 flex items-center justify-center gap-2 text-gray-600 px-4 py-3 sm:px-6 rounded-xl font-bold transition-all border-2 border-gray-200 bg-white hover:bg-gray-50 shadow-sm active:scale-95"
                       >
                         <RefreshCw className="w-5 h-5" />
                         <span>{t('skip')}</span>
@@ -592,7 +618,7 @@ const App: React.FC = () => {
                       <button 
                         onClick={handleCheck}
                         disabled={!isComplete}
-                        className={`flex-[2] sm:flex-none flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold transition-all border-2 ${
+                        className={`flex-[2] flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold transition-all border-2 ${
                           isComplete 
                           ? 'bg-green-600 text-white border-green-700 shadow-sm hover:bg-green-700 active:scale-95' 
                           : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed opacity-60'

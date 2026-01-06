@@ -92,7 +92,9 @@ export const TRANSLATIONS = {
       lbl_aux_stem: "Aux · Base",
       lbl_aux_ending: "Aux · Fin",
       lbl_verb_stem: "Verbe · Base",
-      lbl_verb_ending: "Verbe · Fin"
+      lbl_verb_ending: "Verbe · Fin",
+
+      milestone: "Incroyable ! {n} bonnes réponses !"
     },
     tenses: {
       "Présent": "Présent",
@@ -408,7 +410,9 @@ export const TRANSLATIONS = {
       lbl_aux_stem: "Aux · Base",
       lbl_aux_ending: "Aux · Fin",
       lbl_verb_stem: "Verb · Base",
-      lbl_verb_ending: "Verb · Fin"
+      lbl_verb_ending: "Verb · Fin",
+
+      milestone: "Incroyable ! {n} bonnes réponses !"
     },
     tenses: {
       "Présent": "Present",
@@ -736,6 +740,9 @@ export const TRANSLATIONS = {
       lbl_verb_stem: "动词 · 词根",
       lbl_verb_ending: "动词 · 词尾",
       
+      // Milestone
+      milestone: "太棒了！已答对 {n} 题！"
+      
     },
     tenses: {
       "Présent": "直陈式现在时",
@@ -1060,7 +1067,9 @@ export const TRANSLATIONS = {
       lbl_aux_stem: "助動詞 · 語幹",
       lbl_aux_ending: "助動詞 · 語尾",
       lbl_verb_stem: "動詞 · 語幹",
-      lbl_verb_ending: "動詞 · 語尾"
+      lbl_verb_ending: "動詞 · 語尾",
+      // Milestone
+      milestone: "すごい！正解数: {n}！"
     },
     tenses: {
       "Présent": "現在形",
