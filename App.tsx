@@ -289,7 +289,7 @@ const App: React.FC = () => {
   const showAuxConnectors = puzzle ? (puzzle.auxEnding !== null) : false;
   const showVerbConnectors = puzzle ? (puzzle.correctEnding !== null) : false;
 
-  const isMilestone = gameState === GameState.SUCCESS && successCount > 0 && successCount % 1 === 0;
+  const isMilestone = gameState === GameState.SUCCESS && successCount > 0 && successCount % 5 === 0;
 
   const hasAuxStem = availableAuxStems.length > 0;
   const hasAuxEnd = availableAuxEndings.length > 0;
