@@ -1,4 +1,6 @@
 
+
+
 export type Language = 'fr' | 'en' | 'zh' | 'ja';
 
 export interface LocalizedGrammarRule {
@@ -49,7 +51,7 @@ export const TRANSLATIONS = {
       irregular: "Irrégulier",
       about_desc: "ConjuPuzzle aide les apprenants à maîtriser la conjugaison des verbes français en assemblant radicaux et terminaisons.",
       author: "Created By",
-      version: "v1.5.0",
+      version: "v1.0.0",
       how_to_title: "Comment jouer ?",
       step_1_title: "Lire l'objectif",
       step_1_desc: "Le panneau supérieur indique le pronom, le verbe et le temps.",
@@ -63,6 +65,8 @@ export const TRANSLATIONS = {
       tour_prev: "Précédent",
       tour_next: "Suivant",
       tour_finish: "Compris !",
+      tour_header_title: "Choisir les Temps",
+      tour_header_desc: "Cliquez sur la roue dentée pour sélectionner les temps verbaux que vous souhaitez pratiquer.",
       tour_obj_title: "Votre Mission",
       tour_obj_desc: "Voici le verbe et le temps à conjuguer. Lisez-le attentivement !",
       tour_tray_title: "Les Pièces",
@@ -331,6 +335,7 @@ export const TRANSLATIONS = {
         ]
       }
     }
+
   },
   en: {
     ui: {
@@ -366,7 +371,7 @@ export const TRANSLATIONS = {
       irregular: "Irregular",
       about_desc: "ConjuPuzzle helps learners master French verb conjugation by assembling bases and endings",
       author: "Created By",
-      version: "v1.5.0",
+      version: "v1.0.0",
       how_to_title: "How to play",
       step_1_title: "Read the objective",
       step_1_desc: "The top panel shows the pronoun, verb, and tense.",
@@ -380,6 +385,8 @@ export const TRANSLATIONS = {
       tour_prev: "Back",
       tour_next: "Next",
       tour_finish: "Got it!",
+      tour_header_title: "Choose Tenses",
+      tour_header_desc: "Click the gear icon to select which tenses you want to practice.",
       tour_obj_title: "The Goal",
       tour_obj_desc: "This is the verb and tense you need to conjugate.",
       tour_tray_title: "The Pieces",
@@ -695,7 +702,7 @@ export const TRANSLATIONS = {
       irregular: "不规则",
       about_desc: "ConjuPuzzle 通过拼接动词词根与词尾的方式，引导学习者练习并掌握法语动词变位",
       author: "Created By",
-      version: "v1.5.0",
+      version: "v1.0.0",
       how_to_title: "如何使用",
       step_1_title: "阅读目标",
       step_1_desc: "顶部面板显示代词、动词和目标时态",
@@ -709,6 +716,8 @@ export const TRANSLATIONS = {
       tour_prev: "上一步",
       tour_next: "下一步",
       tour_finish: "知道了",
+      tour_header_title: "选择时态",
+      tour_header_desc: "点击这个齿轮图标，你可以自由选择想要练习的时态。",
       tour_obj_title: "当前目标",
       tour_obj_desc: "这里显示需要变位的 人称代词 + 动词 + 时态",
       tour_tray_title: "拼图碎片",
@@ -1024,7 +1033,7 @@ export const TRANSLATIONS = {
       irregular: "不規則",
       about_desc: "ConjuPuzzle は、語幹と語尾を組み合わせてフランス語の動詞活用習得を支援します",
       author: "Created By",
-      version: "v1.5.0",
+      version: "v1.0.0",
       how_to_title: "遊び方",
       step_1_title: "お題を読む",
       step_1_desc: "上部に代名詞、動詞、時制が表示されます。",
@@ -1038,6 +1047,8 @@ export const TRANSLATIONS = {
       tour_prev: "戻る",
       tour_next: "次へ",
       tour_finish: "完了",
+      tour_header_title: "時制を選ぶ",
+      tour_header_desc: "この歯車アイコンをクリックして、練習したい時制を自由に選べます。",
       tour_obj_title: "ミッション",
       tour_obj_desc: "代名詞・動詞・時制を確認してください。",
       tour_tray_title: "ピース",

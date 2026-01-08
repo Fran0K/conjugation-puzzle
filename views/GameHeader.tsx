@@ -8,12 +8,14 @@ interface GameHeaderProps {
   onOpenSettings: () => void;
   onOpenGrammar: () => void;
   onOpenAbout: () => void;
+  headerRef?: React.RefObject<HTMLElement | null>;
 }
 
 export const GameHeader: React.FC<GameHeaderProps> = ({ 
   onOpenSettings, 
   onOpenGrammar, 
-  onOpenAbout 
+  onOpenAbout,
+  headerRef 
 }) => {
   const { t, language, setLanguage } = useLanguage();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -86,7 +88,9 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
                 )}
              </div>
 
-            <button onClick={onOpenSettings} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
+            <button 
+            ref={headerRef as React.RefObject<HTMLButtonElement>}
+            onClick={onOpenSettings} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">
               <Settings className="w-6 h-6" />
             </button>
             <button onClick={onOpenGrammar} className="p-2 text-gray-400 hover:text-french-blue hover:bg-blue-50 rounded-full transition-colors">

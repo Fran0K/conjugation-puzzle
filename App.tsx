@@ -67,6 +67,7 @@ const App: React.FC = () => {
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const trayRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const settingRef = useRef<HTMLElement>(null);
 
   // Trigger Tutorial on first load
   useEffect(() => {
@@ -85,14 +86,16 @@ const App: React.FC = () => {
 
   const handleRestartTutorial = () => setShowTutorial(true);
 
-  const isMilestone = gameState === GameState.SUCCESS && successCount > 0 && successCount % 1 === 0;
+  const isMilestone = gameState === GameState.SUCCESS && successCount > 0 && successCount % 5 === 0;
 
   const tutorialSteps: TutorialStep[] = [
     { targetRef: objectiveRef, titleKey: 'tour_obj_title', descKey: 'tour_obj_desc', position: 'bottom' },
-    { targetRef: dropZoneRef, titleKey: 'tour_zone_title', descKey: 'tour_zone_desc', position: 'bottom' },
     { targetRef: trayRef, titleKey: 'tour_tray_title', descKey: 'tour_tray_desc', position: 'top' },
+    { targetRef: dropZoneRef, titleKey: 'tour_zone_title', descKey: 'tour_zone_desc', position: 'bottom' },
     { targetRef: footerRef, titleKey: 'tour_footer_title', descKey: 'tour_footer_desc', position: 'top' },
+    { targetRef: settingRef, titleKey: 'tour_header_title', descKey: 'tour_header_desc', position: 'bottom' },
   ];
+
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-french-blue selection:text-white pb-20 sm:pb-15">
@@ -100,6 +103,7 @@ const App: React.FC = () => {
       {isMilestone && <Confetti key={confettiTrigger} />}
 
       <GameHeader 
+        headerRef={settingRef}
         onOpenSettings={() => setShowSettings(true)}
         onOpenGrammar={() => setShowGrammar(true)}
         onOpenAbout={() => setShowAbout(true)}
