@@ -1,5 +1,19 @@
 
 import { GrammarRule } from "./types";
+import { Language } from "./locales";
+
+export const STORAGE_KEYS = {
+  LANGUAGE: 'app_language_pref',
+  TENSES: 'app_tenses_pref',
+  ONBOARDING: 'app_has_seen_tutorial_v2',
+};
+
+export const SUPPORTED_LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'zh', label: '中文', flag: '🇨🇳' },
+  { code: 'ja', label: '日本語', flag: '🇯🇵' },
+];
 
 /**
  * Metadata for Grammar Rules.

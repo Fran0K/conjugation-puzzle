@@ -6,6 +6,14 @@ export enum GameState {
   ERROR = 'ERROR',
 }
 
+// Helper type for granular validation
+export interface ValidationState {
+  stem?: boolean;
+  ending?: boolean;
+  auxStem?: boolean;
+  auxEnding?: boolean;
+}
+
 // Frontend Puzzle Data Interface (used by components)
 export interface PuzzleData {
   id?: string;

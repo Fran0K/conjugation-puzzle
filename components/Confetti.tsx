@@ -15,9 +15,9 @@ interface Particle {
 
 const EMOJIS = ['🎉', '✨', '⭐', '🎊', '🎈'];
 
-const createParticles = (side: 'left' | 'right'): Particle[] => {
+const createParticles = (side: 'left' | 'right', offset: number): Particle[] => {
   return Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
-    id: i,
+    id: offset + i, // Add offset to ensure unique IDs
     x: side === 'left' ? 0 : 100, // Percentage from left
     y: 100, // Percentage from top (bottom)
     angle: side === 'left' 
@@ -33,7 +33,10 @@ export const Confetti: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
-    setParticles([...createParticles('left'), ...createParticles('right')]);
+    setParticles([
+      ...createParticles('left', 0), 
+      ...createParticles('right', PARTICLE_COUNT) // Offset the IDs for the second batch
+    ]);
   }, []);
 
   return (
@@ -65,7 +68,7 @@ export const Confetti: React.FC = () => {
               '--tx': `${tx}vh`,
               '--ty': `${ty}vh`,
               '--rot': `${rot}deg`,
-              animation: `confetti-shoot 1.5s ease-out forwards ${p.delay}s`
+              animation: `confetti-shoot 2s ease-out forwards ${p.delay}s`
             }}
           >
             {p.emoji}
