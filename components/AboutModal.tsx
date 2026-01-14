@@ -38,8 +38,8 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onResta
                 src="/img/logo_about.png" 
                 alt="ConjuPuzzle" 
                 className="w-24 h-24 mb-4 object-contain "/>
-              <h1 className="text-2xl font-bold text-gray-800">{t('title')}</h1>
-              <p className="text-xs font-mono text-gray-400 mt-1">{t('version')}</p>
+              <h1 className="text-2xl font-bold text-gray-800">ConjuPuzzle</h1>
+              <p className="text-xs font-mono text-gray-400 mt-1">1.0.1</p>
               <p className="text-sm text-gray-600 mt-4 leading-relaxed max-w-sm">
                 {t('about_desc')}
               </p>

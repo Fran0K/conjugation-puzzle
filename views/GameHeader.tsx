@@ -35,7 +35,7 @@ export const GameHeader: React.FC<GameHeaderProps> = ({
       )}
 
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30">
-        <div className="max-w-4xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+        <div className="mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between">
           
           {/* Logo Area */}
           <div className="flex items-center gap-2">
