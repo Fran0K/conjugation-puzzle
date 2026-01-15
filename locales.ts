@@ -26,10 +26,10 @@ export const TRANSLATIONS = {
       about: "À propos",
       objective: "Objectif",
       hint: "Indice",
-      stem_zone: "Base",
-      ending_zone: "Fin",
-      stems_tray: "Base",
-      endings_tray: "Fin",
+      stem_zone: "Radical",
+      ending_zone: "Terminaison",
+      stems_tray: "Radical",
+      endings_tray: "Terminaison",
       check: "Vérifier",
       skip: "Passer",
       next: "Suivant",
@@ -55,7 +55,7 @@ export const TRANSLATIONS = {
       step_1_title: "Lire l'objectif",
       step_1_desc: "Le panneau supérieur indique le pronom, le verbe et le temps.",
       step_2_title: "Comprendre la logique",
-      step_2_desc: "La conjugaison se construit souvent ainsi : Base + Terminaison.",
+      step_2_desc: "La conjugaison se construit souvent ainsi : Radical + Terminaison.",
       step_3_title: "Glisser-Déposer",
       step_3_desc: "Choisissez les pièces dans le plateau et placez-les dans les zones.",
       step_4_title: "Vérifier",
@@ -69,7 +69,7 @@ export const TRANSLATIONS = {
       tour_obj_title: "Votre Mission",
       tour_obj_desc: "Voici le verbe et le temps à conjuguer. Lisez-le attentivement !",
       tour_tray_title: "Les Pièces",
-      tour_tray_desc: "Trouvez les bons morceaux (Base et Terminaison) dans ce plateau.",
+      tour_tray_desc: "Trouvez les bons morceaux (Radical et Terminaison) dans ce plateau.",
       tour_zone_title: "Assemblage",
       tour_zone_desc: "Glissez les pièces ici pour construire la conjugaison.",
       tour_settings_title: "Paramètres",
@@ -84,7 +84,7 @@ export const TRANSLATIONS = {
       welcome_title: "Bienvenue sur ConjuPuzzle",
       welcome_subtitle: "Apprenez la conjugaison française en jouant.",
       onboarding_logic_title: "La Logique",
-      onboarding_logic_desc: "La plupart des verbes se construisent ainsi : Base + Terminaison.",
+      onboarding_logic_desc: "La plupart des verbes se construisent ainsi : Radical + Terminaison.",
       onboarding_action_title: "Votre Mission",
       onboarding_action_desc: "Glissez les pièces du plateau vers les zones vides pour former le verbe conjugué.",
       start_game: "Commencer",
@@ -92,10 +92,10 @@ export const TRANSLATIONS = {
       // Zone Labels
       lbl_aux: "Aux",
       lbl_verb: "Verb",
-      lbl_aux_stem: "Aux · Base",
-      lbl_aux_ending: "Aux · Fin",
-      lbl_verb_stem: "Verbe · Base",
-      lbl_verb_ending: "Verbe · Fin",
+      lbl_aux_stem: "Aux · Rad",
+      lbl_aux_ending: "Aux · Term",
+      lbl_verb_stem: "Verbe · Rad",
+      lbl_verb_ending: "Verbe · Term",
 
       milestone: "Incroyable ! {n} bonnes réponses !"
     },
@@ -345,10 +345,10 @@ export const TRANSLATIONS = {
       about: "About",
       objective: "Goal",
       hint: "Hint",
-      stem_zone: "Base",
-      ending_zone: "Fin",
-      stems_tray: "Base",
-      endings_tray: "Fin",
+      stem_zone: "Stem",
+      ending_zone: "Ending",
+      stems_tray: "Stem",
+      endings_tray: "Ending",
       check: "Check",
       skip: "Skip",
       next: "Next",
@@ -368,13 +368,13 @@ export const TRANSLATIONS = {
       validate: "OK",
       regular: "Regular",
       irregular: "Irregular",
-      about_desc: "ConjuPuzzle helps French learners master French verb conjugation by assembling bases and endings",
+      about_desc: "ConjuPuzzle helps French learners master French verb conjugation by assembling Stems and endings",
       author: "Created By",
       how_to_title: "How to play",
       step_1_title: "Read the objective",
       step_1_desc: "The top panel shows the pronoun, verb, and tense.",
       step_2_title: "Built the verb",
-      step_2_desc: "French conjugation verb is usually built from: Base part + Ending part.",
+      step_2_desc: "French conjugation verb is usually built from: Stem part + Ending part.",
       step_3_title: "Drag & Drop",
       step_3_desc: "Choose pieces from the tray and put them into the slots.",
       step_4_title: "Verify",
@@ -388,7 +388,7 @@ export const TRANSLATIONS = {
       tour_obj_title: "The Goal",
       tour_obj_desc: "This is the verb and tense you need to conjugate.",
       tour_tray_title: "The Pieces",
-      tour_tray_desc: "Find the correct parts (Base & Ending) in this tray.",
+      tour_tray_desc: "Find the correct parts (Stem & Ending) in this tray.",
       tour_zone_title: "Assembly",
       tour_zone_desc: "Drag or Click the pieces here to build the word.",
       tour_settings_title: "Settings",
@@ -403,7 +403,7 @@ export const TRANSLATIONS = {
       welcome_title: "Welcome to Conjugation Puzzle",
       welcome_subtitle: "Master French conjugation the fun way.",
       onboarding_logic_title: "The Logic",
-      onboarding_logic_desc: "Most verbs follow this pattern: Base + Ending.",
+      onboarding_logic_desc: "Most verbs follow this pattern: Stem + Ending.",
       onboarding_action_title: "Your Mission",
       onboarding_action_desc: "Drag or Click pieces from the tray to the empty slots to build the conjugated verb.",
       start_game: "Start Game",
@@ -412,10 +412,10 @@ export const TRANSLATIONS = {
       // Zone Labels
       lbl_aux: "Aux",
       lbl_verb: "Verb",
-      lbl_aux_stem: "Aux · Base",
-      lbl_aux_ending: "Aux · Fin",
-      lbl_verb_stem: "Verb · Base",
-      lbl_verb_ending: "Verb · Fin",
+      lbl_aux_stem: "Aux · Stem",
+      lbl_aux_ending: "Aux · End",
+      lbl_verb_stem: "Verb · Stem",
+      lbl_verb_ending: "Verb · End",
 
       milestone: "Incroyable ! {n} bonnes réponses !"
     },
@@ -438,7 +438,7 @@ export const TRANSLATIONS = {
     rules:{
       "Présent": {
         "title": "Present Indicative",
-        "formula": "Infinitive base + present tense endings (3 verb groups)",
+        "formula": "Infinitive Stem + present tense endings (3 verb groups)",
         "description": "Used to express a current action, a habitual action, or a general truth.",
         "example": "Je parle, je finis, je prends",
         "details": [
@@ -454,7 +454,7 @@ export const TRANSLATIONS = {
           },
           {
             "label": "Third group verbs",
-            "text": "Irregular bases and endings depending on the verb",
+            "text": "Irregular stems and endings depending on the verb",
             "examples": "je prends, nous venons"
           }
         ]
@@ -480,14 +480,14 @@ export const TRANSLATIONS = {
         "details": [
           {
             "label": "Basic formation",
-            "text": "Infinitive or irregular future base + ai, as, a, ons, ez, ont",
+            "text": "Infinitive or irregular future stem + ai, as, a, ons, ez, ont",
             "examples": "parler → je parlerai"
           }
         ]
       },
       "Passé Simple": {
         "title": "Simple Past Indicative",
-        "formula": "base + simple past endings",
+        "formula": "stem + simple past endings",
         "description": "A literary tense used in written narratives to express completed past actions.",
         "example": "Je parlai, je finis, je pris",
         "details": [
@@ -500,13 +500,13 @@ export const TRANSLATIONS = {
       },
       "Conditionnel Présent": {
         "title": "Present Conditional",
-        "formula": "Future base + imperfect endings",
+        "formula": "Future stem + imperfect endings",
         "description": "Used to express hypotheses, conditional results, assumptions, or polite requests.",
         "example": "Je parlerais, je finirais, je prendrais",
         "details": [
           {
             "label": "Basic formation",
-            "text": "Infinitive or future base + ais, ais, ait, ions, iez, aient",
+            "text": "Infinitive or future stem + ais, ais, ait, ions, iez, aient",
             "examples": "venir → je viendrais"
           }
         ]
@@ -526,7 +526,7 @@ export const TRANSLATIONS = {
       },
       "Subjonctif Imparfait": {
         "title": "Imperfect Subjunctive",
-        "formula": "Simple past base + imperfect subjunctive endings",
+        "formula": "Simple past stem + imperfect subjunctive endings",
         "description": "A literary tense used in writing to express uncertainty or subjectivity in the past.",
         "example": "Que je parlasse, que je finisse, que je prisse",
         "details": [
@@ -704,7 +704,7 @@ export const TRANSLATIONS = {
       step_1_title: "阅读目标",
       step_1_desc: "顶部面板显示代词、动词和目标时态",
       step_2_title: "理解逻辑",
-      step_2_desc: "法语变位通常由动词 “词干 (Base) + 词尾 (Fin)” 组成",
+      step_2_desc: "法语变位通常由动词 “词干 (Stem) + 词尾 (Ending)” 组成",
       step_3_title: "拖拽拼图",
       step_3_desc: "从下方托盘选择正确的拼图块，拖入中间的空槽",
       step_4_title: "验证答案",
@@ -718,7 +718,7 @@ export const TRANSLATIONS = {
       tour_obj_title: "当前目标",
       tour_obj_desc: "这里显示需要变位的 人称代词 + 动词 + 时态",
       tour_tray_title: "词干词尾拼图",
-      tour_tray_desc: "在下方区域找到正确的词干(Base)和词尾(Fin), 组合成正确的动词变位词。 ",
+      tour_tray_desc: "在下方区域找到正确的词干(Stem)和词尾(Ending), 组合成正确的动词变位词。 ",
       tour_zone_title: "拼图区域",
       tour_zone_desc: "将词干词尾拼图拖拽到这里，组合成正确的动词。",
       tour_footer_title: "操作",
@@ -1034,7 +1034,7 @@ export const TRANSLATIONS = {
       step_1_title: "お題を読む",
       step_1_desc: "上部に代名詞、動詞、時制が表示されます。",
       step_2_title: "ロジック",
-      step_2_desc: "フランス語の動詞は基本的に「語幹(Base) + 語尾(Fin)」で作られます。",
+      step_2_desc: "フランス語の動詞は基本的に「語幹(Radical) + 語尾(Ending)」で作られます。",
       step_3_title: "ドラッグ＆ドロップ",
       step_3_desc: "下のトレイからピースを選んで、空のスロットに配置します。",
       step_4_title: "答え合わせ",
