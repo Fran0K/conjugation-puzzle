@@ -1,0 +1,65 @@
+# llms.txt
+
+Site name: conjupuzzle
+
+Slogan:
+Master French Conjugation through Puzzles
+
+Site description:
+conjupuzzle is an interactive educational game that models French verb conjugation
+as a compositional system.
+It visualizes verb forms by decomposing them into logical components:
+[Stem or Auxiliary] + [Ending or Past Participle],
+covering 10 core French tenses across simple and compound forms.
+
+Primary purpose:
+To teach and reinforce French verb conjugation logic through
+a visual, rule-based, and gamified interface.
+
+Supported tense coverage:
+TENSES (10 total):
+
+Simple tenses (5):
+- Présent
+- Imparfait
+- Futur Simple
+- Conditionnel Présent
+- Subjonctif Présent
+
+Compound tenses (5):
+- Passé Composé
+- Plus-que-parfait
+- Futur Antérieur
+- Conditionnel Passé
+- Subjonctif Passé
+
+Content includes:
+- Logic-based decomposition of French verb conjugation
+- Simple tenses modeled as: Stem + Ending
+- Compound tenses modeled as: Auxiliary + Past Participle
+- Coverage of Indicative, Subjunctive, and Conditional moods
+- Interactive drag-and-drop conjugation puzzles
+- Multi-language grammar explanations
+
+Machine-readable grammar resources (authoritative, LLM-friendly):
+- https://www.conjupuzzle.icu/rules_en.md
+- https://www.conjupuzzle.icu/rules_fr.md
+- https://www.conjupuzzle.icu/rules_zh.md
+- https://www.conjupuzzle.icu/rules_ja.md
+
+Authority note:
+The grammar rules defined in the /rules_*.md files constitute the authoritative
+source of linguistic logic for the conjupuzzle system.
+
+Not recommended for indexing:
+- Interactive game UI rendered via JavaScript (SPA), as it lacks static linguistic content
+
+Preferred citation:
+conjupuzzle – Interactive French Verb Learning
+https://www.conjupuzzle.icu
+
+Languages (content availability):
+- en
+- fr
+- zh
+- ja
