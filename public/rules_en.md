@@ -1,108 +1,195 @@
 # French Conjugation Rules (English)
 
+This document defines the authoritative French conjugation rules
+used by the **conjupuzzle** system.
+
+Only the tenses explicitly documented in this file are considered
+**supported by the conjupuzzle game logic**.
+All rules are modeled using a compositional approach
+(Stem + Ending, or Auxiliary + Past Participle).
+
+---
+
 ## Present Indicative (Présent)
-- **Formula**: Infinitive base + present tense endings (3 verb groups)
-- **Description**: Used to express a current action, a habitual action, or a general truth.
-- **Example**: Je parle, je finis, je prends
+
+- **Formula**: Stem + Present Endings
+- **Usage**:  
+  Used to express a current action, a habitual action, or a general truth.
+
+- **Examples**:
+  - parler → je parle  
+  - finir → je finis  
+  - prendre → je prends  
+
 - **Details**:
-  - *First group verbs (-er)*: Remove -er from the infinitive, add e, es, e, ons, ez, ent (e.g., je parle, nous parlons)
-  - *Second group verbs (-ir)*: Remove -ir from the infinitive, add is, is, it, issons, issez, issent (e.g., je finis, nous finissons)
-  - *Third group verbs*: Irregular bases and endings depending on the verb (e.g., je prends, nous venons)
+  - **Formation**:
+    - First group (-er): Stem + e, es, e, ons, ez, ent  
+      (parler → je parle, nous parlons)
+    - Second group (-ir): Stem + is, is, it, issons, issez, issent  
+      (finir → je finis, nous finissons)
+    - Third group: Irregular stems and/or endings  
+      (prendre → je prends, nous prenons)
+
+---
 
 ## Imperfect Indicative (Imparfait)
-- **Formula**: Present tense nous form minus -ons + imperfect endings
-- **Description**: Used to describe habitual actions, background descriptions, or ongoing actions in the past.
-- **Example**: Je parlais, je finissais, je prenais
+
+- **Formula**: Imperfect Stem + Imperfect Endings
+- **Usage**:  
+  Used to describe habitual actions, background descriptions,
+  or ongoing actions in the past.
+
+- **Examples**:
+  - parler → je parlais  
+  - finir → je finissais  
+  - prendre → je prenais  
+
 - **Details**:
-  - *Basic formation*: Take the first person plural present form, remove -ons, add ais, ais, ait, ions, iez, aient (e.g., nous parlons → je parlais)
+  - **Formation**:
+    - Imperfect stem = present tense **nous** form minus *-ons*
+    - Endings: ais, ais, ait, ions, iez, aient  
+      (nous parlons → parl- → je parlais)
+
+---
 
 ## Simple Future (Futur Simple)
-- **Formula**: Infinitive + simple future endings
-- **Description**: Used to express future actions or certainty about the future.
-- **Example**: Je parlerai, je finirai, je prendrai
-- **Details**:
-  - *Basic formation*: Infinitive or irregular future base + ai, as, a, ons, ez, ont (e.g., parler → je parlerai)
 
-## Simple Past Indicative (Passé Simple)
-- **Formula**: base + simple past endings
-- **Description**: A literary tense used in written narratives to express completed past actions.
-- **Example**: Je parlai, je finis, je pris
+- **Formula**: Future Stem + Future Endings
+- **Usage**:  
+  Used to express future actions or certainty about the future.
+
+- **Examples**:
+  - parler → je parlerai  
+  - finir → je finirai  
+  - prendre → je prendrai  
+
 - **Details**:
-  - *Usage*: Used mainly in literature, narratives, and formal written texts (e.g., il entra, ils partirent)
+  - **Formation**:
+    - Future stem = infinitive (or irregular future stem)
+    - Endings: ai, as, a, ons, ez, ont
+
+---
 
 ## Present Conditional (Conditionnel Présent)
-- **Formula**: Future base + imperfect endings
-- **Description**: Used to express hypotheses, conditional results, assumptions, or polite requests.
-- **Example**: Je parlerais, je finirais, je prendrais
+
+- **Formula**: Future Stem + Imperfect Endings
+- **Usage**:  
+  Used to express hypotheses, conditional results,
+  assumptions, or polite requests.
+
+- **Examples**:
+  - parler → je parlerais  
+  - finir → je finirais  
+  - prendre → je prendrais  
+
 - **Details**:
-  - *Basic formation*: Infinitive or future base + ais, ais, ait, ions, iez, aient (e.g., venir → je viendrais)
+  - **Formation**:
+    - Future stem (same as Futur Simple)
+    - Endings: ais, ais, ait, ions, iez, aient
+
+---
 
 ## Present Subjunctive (Subjonctif Présent)
-- **Formula**: Present tense ils form minus -ent + subjunctive endings
-- **Description**: Used to express doubt, subjectivity, emotion, desire, or necessity.
-- **Example**: Que je parle, que je finisse, que je prenne
-- **Details**:
-  - *Basic formation*: Take the third person plural present form, remove -ent, add e, es, e, ions, iez, ent (e.g., ils parlent → que je parle)
 
-## Imperfect Subjunctive (Subjonctif Imparfait)
-- **Formula**: Simple past base + imperfect subjunctive endings
-- **Description**: A literary tense used in writing to express uncertainty or subjectivity in the past.
-- **Example**: Que je parlasse, que je finisse, que je prisse
+- **Formula**: Subjunctive Stem + Subjunctive Endings
+- **Usage**:  
+  Used to express doubt, subjectivity, emotion,
+  desire, or necessity.
+
+- **Examples**:
+  - parler → que je parle  
+  - finir → que je finisse  
+  - prendre → que je prenne  
+
 - **Details**:
-  - *Usage*: Used only in literary and formal written French, not in modern spoken language (e.g., qu’il vînt, qu’ils eussent)
+  - **Formation**:
+    - Subjunctive stem = present tense **ils** form minus *-ent*
+    - Endings: e, es, e, ions, iez, ent  
+      (ils parlent → parl- → que je parle)
+
+---
 
 ## Compound Past (Passé Composé)
-- **Formula**: Auxiliary avoir / être in the present + past participle
-- **Description**: Used to express a completed past action with relevance to the present.
-- **Example**: J’ai parlé, je suis allé
+
+- **Formula**: Auxiliary (avoir / être) + Past Participle
+- **Usage**:  
+  Used to express a completed past action
+  with relevance to the present.
+
+- **Examples**:
+  - parler → j’ai parlé  
+  - aller → je suis allé  
+
 - **Details**:
-  - *Using avoir*: Used with most transitive and intransitive verbs; the past participle usually does not agree with the subject (e.g., j’ai fini)
-  - *Using être*: Used with movement and state-change verbs and all reflexive verbs; the past participle agrees with the subject (e.g., je suis venu)
+  - **Using avoir**:
+    - Used with most verbs
+    - Past participle generally does **not** agree with the subject
+  - **Using être**:
+    - Used with movement and reflexive verbs
+    - Past participle agrees with the subject
+
+---
 
 ## Pluperfect Indicative (Plus-que-parfait)
-- **Formula**: Auxiliary avoir / être in the imperfect + past participle
-- **Description**: Used to express an action completed before another past action.
-- **Example**: J’avais parlé, j’étais parti
+
+- **Formula**: Auxiliary (avoir / être) in the Imperfect + Past Participle
+- **Usage**:  
+  Used to express an action completed
+  before another past action.
+
+- **Examples**:
+  - parler → j’avais parlé  
+  - partir → j’étais parti  
+
 - **Details**:
-  - *Using avoir*: Used with most verbs, following the same rules as the compound past with avoir (e.g., j’avais fini)
-  - *Using être*: Used with movement and reflexive verbs; the past participle agrees with the subject (e.g., j’étais arrivé)
+  - Agreement rules follow those of the Passé Composé
+
+---
 
 ## Future Perfect (Futur Antérieur)
-- **Formula**: Auxiliary avoir / être in the simple future + past participle
-- **Description**: Used to express an action that will be completed before a future moment.
-- **Example**: J’aurai parlé, je serai parti
-- **Details**:
-  - *Using avoir*: Used with most verbs, following the same rules as the compound past with avoir (e.g., j’aurai fini)
-  - *Using être*: Used with movement and reflexive verbs; the past participle agrees with the subject (e.g., je serai venu)
 
-## Past Anterior (Passé Antérieur)
-- **Formula**: Auxiliary avoir / être in the simple past + past participle
-- **Description**: A literary tense expressing an action completed immediately before another past action.
-- **Example**: J’eus parlé, je fus parti
+- **Formula**: Auxiliary (avoir / être) in the Simple Future + Past Participle
+- **Usage**:  
+  Used to express an action that will be completed
+  before a future moment.
+
+- **Examples**:
+  - parler → j’aurai parlé  
+  - partir → je serai parti  
+
 - **Details**:
-  - *Using avoir*: Used with most verbs, following the same rules as the compound past with avoir; literary usage only (e.g., il eut fini)
-  - *Using être*: Used with movement and reflexive verbs; past participle agrees with the subject; literary usage only (e.g., il fut venu)
+  - Agreement rules follow those of the Passé Composé
+
+---
 
 ## Past Conditional (Conditionnel Passé)
-- **Formula**: Auxiliary avoir / être in the present conditional + past participle
-- **Description**: Used to express an unrealized or hypothetical action in the past.
-- **Example**: J’aurais parlé, je serais parti
+
+- **Formula**: Auxiliary (avoir / être) in the Present Conditional + Past Participle
+- **Usage**:  
+  Used to express an unrealized or hypothetical
+  action in the past.
+
+- **Examples**:
+  - parler → j’aurais parlé  
+  - partir → je serais parti  
+
 - **Details**:
-  - *Using avoir*: Used with most verbs to express an action that would have occurred under certain conditions (e.g., j’aurais fini)
-  - *Using être*: Used with movement and reflexive verbs; the past participle agrees with the subject (e.g., je serais venu)
+  - Agreement rules follow those of the Passé Composé
+
+---
 
 ## Past Subjunctive (Subjonctif Passé)
-- **Formula**: Auxiliary avoir / être in the present subjunctive + past participle
-- **Description**: Used to express a completed action linked to doubt, emotion, or subjectivity.
-- **Example**: Que j’aie parlé, que je sois parti
-- **Details**:
-  - *Using avoir*: Used with most verbs to express a completed action in a subjunctive context (e.g., que j’aie fini)
-  - *Using être*: Used with movement and reflexive verbs; the past participle agrees with the subject (e.g., que je sois venu)
 
-## Pluperfect Subjunctive (Subjonctif Plus-que-parfait)
-- **Formula**: Auxiliary avoir / être in the imperfect subjunctive + past participle
-- **Description**: A literary tense used to express a completed action in the past with a hypothetical or subjective nuance.
-- **Example**: Que j’eusse parlé, que je fusse parti
+- **Formula**: Auxiliary (avoir / être) in the Present Subjunctive + Past Participle
+- **Usage**:  
+  Used to express a completed action
+  linked to doubt, emotion, or subjectivity.
+
+- **Examples**:
+  - parler → que j’aie parlé  
+  - partir → que je sois parti  
+
 - **Details**:
-  - *Using avoir*: Used with most verbs; follows the same rules as the past subjunctive; literary usage only (e.g., qu’il eût fini)
-  - *Using être*: Used with movement and reflexive verbs; the past participle agrees with the subject; literary usage only (e.g., qu’il fût venu)
+  - Agreement rules follow those of the Passé Composé
+
+---

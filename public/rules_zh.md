@@ -1,108 +1,145 @@
-# 法语动词变位规则 (中文)
+# 法语动词变位规则（中文）
 
-## 直陈式现在时 (Présent)
-- **构成公式**: 不定式词干 + 现在时变位词尾（3 个变位组）
-- **描述**: 用于表达当前正在发生的动作、习惯性动作或客观事实。
-- **例句**: Je parle, je finis, je prends
-- **详细说明**:
-  - *第一组动词（-er）*: 去掉不定式词尾 -er，加 e, es, e, ons, ez, ent (例: je parle, nous parlons)
-  - *第二组动词（-ir）*: 去掉不定式词尾 -ir，加 is, is, it, issons, issez, issent (例: je finis, nous finissons)
-  - *第三组动词*: 词干和词尾变化不规则，需单独记忆 (例: je prends, nous venons)
+本文档定义 **conjupuzzle** 系统所使用的
+**权威法语动词变位规则**。
 
-## 直陈式未完成过去时 (Imparfait)
-- **构成公式**: 现在时 nous 形式去掉 -ons + 未完成过去时词尾
-- **描述**: 用于描述过去经常发生的动作、背景性描述或过去某一时刻正在进行的动作。
-- **例句**: Je parlais, je finissais, je prenais
-- **详细说明**:
-  - *基本构成*: 现在时第一人称复数形式去掉 -ons，加 ais, ais, ait, ions, iez, aient (例: nous parlons → je parlais)
+仅本文档中明确列出的时态
+被视为 **conjupuzzle 游戏逻辑所支持的范围**。
+所有规则均采用组合模型：
+（Stem + Ending，或 Auxiliary + Past Participle）。
 
-## 直陈式简单将来时 (Futur Simple)
-- **构成公式**: 不定式 + 简单将来时词尾
-- **描述**: 用于表达将来要发生的动作或对未来的确定判断。
-- **例句**: Je parlerai, je finirai, je prendrai
-- **详细说明**:
-  - *基本构成*: 不定式或不规则将来词干 + ai, as, a, ons, ez, ont (例: parler → je parlerai)
+---
 
-## 直陈式简单过去时 (Passé Simple)
-- **构成公式**: 词干 + 简单过去时词尾
-- **描述**: 文学性时态，用于书面语中表达一次性、已完成的过去动作。
-- **例句**: Je parlai, je finis, je pris
-- **详细说明**:
-  - *使用场景*: 主要用于文学作品、叙事文本和正式书面语 (例: il entra, ils partirent)
+## 直陈式现在时（Présent）
 
-## 条件式现在时 (Conditionnel Présent)
-- **构成公式**: 将来时词干 + 未完成过去时词尾
-- **描述**: 用于表达假设、条件结果、推测或礼貌请求。
-- **例句**: Je parlerais, je finirais, je prendrais
-- **详细说明**:
-  - *基本构成*: 不定式或将来时词干 + ais, ais, ait, ions, iez, aient (例: venir → je viendrais)
+- **公式**：词干（Stem）+ 现在时词尾
+- **用法**：  
+  表示正在发生的动作、习惯性动作或普遍真理。
 
-## 虚拟式现在时 (Subjonctif Présent)
-- **构成公式**: 现在时 ils 形式去掉 -ent + 虚拟式词尾
-- **描述**: 用于表达不确定性、主观判断、情感、愿望或必要性。
-- **例句**: Que je parle, que je finisse, que je prenne
-- **详细说明**:
-  - *基本构成*: 现在时第三人称复数形式去掉 -ent，加 e, es, e, ions, iez, ent (例: ils parlent → que je parle)
+- **示例**：
+  - parler → je parle  
+  - finir → je finis  
+  - prendre → je prends  
 
-## 虚拟式未完成过去时 (Subjonctif Imparfait)
-- **构成公式**: 简单过去时词干 + 虚拟式未完成过去时词尾
-- **描述**: 文学性时态，用于书面语中表达过去的不确定或主观动作。
-- **例句**: Que je parlasse, que je finisse, que je prisse
-- **详细说明**:
-  - *使用场景*: 仅用于文学和正式书面语，现代口语中已不使用 (例: qu’il vînt, qu’ils eussent)
+- **构成**：
+  - 第一组 (-er)：Stem + e, es, e, ons, ez, ent  
+  - 第二组 (-ir)：Stem + is, is, it, issons, issez, issent  
+  - 第三组：不规则词干或词尾
 
-## 复合过去时 (Passé Composé)
-- **构成公式**: 助动词 avoir / être 现在时 + 过去分词
-- **描述**: 用于表达已经完成且与现在有关联的过去动作。
-- **例句**: J’ai parlé, je suis allé
-- **详细说明**:
-  - *使用 avoir*: 用于大多数及物动词和不及物动词，动词后可直接接宾语；过去分词通常不与主语配合 (例: j’ai fini)
-  - *使用 être*: 用于 16 个运动和状态变化动词及所有自反动词，过去分词需与主语进行性数配合 (例: je suis venu)
+---
 
-## 直陈式愈过去时 (Plus-que-parfait)
-- **构成公式**: 助动词 avoir / être 未完成过去时 + 过去分词
-- **描述**: 用于表达在另一过去动作之前已经完成的动作。
-- **例句**: J’avais parlé, j’étais parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，规则与复合过去时中使用 avoir 相同 (例: j’avais fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合 (例: j’étais arrivé)
+## 直陈式未完成过去时（Imparfait）
 
-## 先将来时 (Futur Antérieur)
-- **构成公式**: 助动词 avoir / être 简单将来时 + 过去分词
-- **描述**: 用于表达在未来某一时刻之前已经完成的动作。
-- **例句**: J’aurai parlé, je serai parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，规则与复合过去时中使用 avoir 相同 (例: j’aurai fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合 (例: je serai venu)
+- **公式**：未完成过去时词干 + 词尾
+- **用法**：  
+  描述过去的习惯性动作、背景或持续状态。
 
-## 直陈式先过去时 (Passé Antérieur)
-- **构成公式**: 助动词 avoir / être 简单过去时 + 过去分词
-- **描述**: 文学性时态，用于书面语中表示紧接另一过去动作之前完成的动作。
-- **例句**: J’eus parlé, je fus parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，规则与复合过去时中使用 avoir 相同，仅见于书面语 (例: il eut fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合，仅用于文学语境 (例: il fut venu)
+- **示例**：
+  - parler → je parlais  
+  - finir → je finissais  
+  - prendre → je prenais  
 
-## 条件式过去时 (Conditionnel Passé)
-- **构成公式**: 助动词 avoir / être 条件式现在时 + 过去分词
-- **描述**: 用于表达过去未实现的假设或条件结果。
-- **例句**: J’aurais parlé, je serais parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，表示假设条件下本应完成的动作 (例: j’aurais fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合 (例: je serais venu)
+- **构成**：
+  - 词干 = 现在时 nous 形式去掉 *-ons*
+  - 词尾：ais, ais, ait, ions, iez, aient
 
-## 虚拟式过去时 (Subjonctif Passé)
-- **构成公式**: 助动词 avoir / être 虚拟式现在时 + 过去分词
-- **描述**: 用于表达已经完成但带有主观判断、情感或不确定性的动作。
-- **例句**: Que j’aie parlé, que je sois parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，表示在虚拟语境下已完成的动作 (例: que j’aie fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合 (例: que je sois venu)
+---
 
-## 虚拟式愈过去时 (Subjonctif Plus-que-parfait)
-- **构成公式**: 助动词 avoir / être 虚拟式未完成过去时 + 过去分词
-- **描述**: 文学性时态，用于书面语中表达过去已完成但带有主观或假设色彩的动作。
-- **例句**: Que j’eusse parlé, que je fusse parti
-- **详细说明**:
-  - *使用 avoir*: 用于大多数动词，规则与虚拟式过去时中使用 avoir 相同，仅用于文学语境 (例: qu’il eût fini)
-  - *使用 être*: 用于运动动词和自反动词，过去分词与主语进行性数配合，仅用于文学语境 (例: qu’il fût venu)
+## 简单将来时（Futur Simple）
+
+- **公式**：将来时词干 + 将来时词尾
+- **用法**：  
+  表示将来发生的动作或确定的推测。
+
+- **示例**：
+  - parler → je parlerai  
+  - finir → je finirai  
+  - prendre → je prendrai  
+
+---
+
+## 条件式现在时（Conditionnel Présent）
+
+- **公式**：将来时词干 + 未完成过去时词尾
+- **用法**：  
+  表示假设、条件结果或礼貌请求。
+
+- **示例**：
+  - parler → je parlerais  
+  - finir → je finirais  
+  - prendre → je prendrais  
+
+---
+
+## 虚拟式现在时（Subjonctif Présent）
+
+- **公式**：虚拟式词干 + 虚拟式词尾
+- **用法**：  
+  表示怀疑、情感、愿望或必要性。
+
+- **示例**：
+  - parler → que je parle  
+  - finir → que je finisse  
+  - prendre → que je prenne  
+
+---
+
+## 复合过去时（Passé Composé）
+
+- **公式**：助动词（avoir / être）+ 过去分词
+- **用法**：  
+  表示已完成且与现在有关的过去动作。
+
+- **示例**：
+  - parler → j’ai parlé  
+  - aller → je suis allé  
+
+---
+
+## 愈过去时（Plus-que-parfait）
+
+- **公式**：助动词未完成过去时 + 过去分词
+- **用法**：  
+  表示在另一过去动作之前完成的动作。
+
+- **示例**：
+  - parler → j’avais parlé  
+  - partir → j’étais parti  
+
+---
+
+## 先将来时（Futur Antérieur）
+
+- **公式**：助动词将来时 + 过去分词
+- **用法**：  
+  表示在将来某一时间点之前完成的动作。
+
+- **示例**：
+  - parler → j’aurai parlé  
+  - partir → je serai parti  
+
+---
+
+## 条件式过去时（Conditionnel Passé）
+
+- **公式**：助动词条件式现在时 + 过去分词
+- **用法**：  
+  表示过去未实现的假设动作。
+
+- **示例**：
+  - parler → j’aurais parlé  
+  - partir → je serais parti  
+
+---
+
+## 虚拟式过去时（Subjonctif Passé）
+
+- **公式**：助动词虚拟式现在时 + 过去分词
+- **用法**：  
+  表示与主观情感或怀疑相关的已完成动作。
+
+- **示例**：
+  - parler → que j’aie parlé  
+  - partir → que je sois parti  
+
+---
