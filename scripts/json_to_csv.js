@@ -10,9 +10,9 @@ const require = createRequire(import.meta.url);
 const fs = require('fs');
 const crypto = require('crypto');
 
-const INPUT_FILE = 'data/aimer.json';
-const OUTPUT_VERBS = 'verbs_aimer.csv';
-const OUTPUT_PUZZLES = 'puzzles_aimer.csv';
+const INPUT_FILE = 'data/verbs/ecrire.json';
+const OUTPUT_VERBS = 'verbs_ecrire.csv';
+const OUTPUT_PUZZLES = 'puzzles_ecrire.csv';
 
 // Escape for CSV: Double quotes must be double-double quoted
 function toCSVCell(value) {
